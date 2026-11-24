@@ -196,6 +196,9 @@ def describe(ev, names):
     if kind == "new":
         parts = [f"{m['no']}台目：{short_time(m['after'])}" for m in ev["machines"]]
         return f"🆕 **{name}** 台データ新規掲載（{len(ev['machines'])}台。{'／'.join(parts)}）"
+    if kind == "machine_back":
+        parts = [f"{m['no']}台目：{short_time(m['before'])} → {short_time(m['after'])}、{gap_text(m['gap'])}" for m in ev["machines"]]
+        return f"🔁 **{name}** 消えていた台が戻りました（{'／'.join(parts)}）"
     if kind == "added":
         parts = [f"{m['no']}台目：{short_time(m['after'])}" for m in ev["machines"]]
         return f"➕ **{name}** 台が増えました（{'／'.join(parts)}）"
@@ -342,9 +345,10 @@ def main():
                 continue
 
             if not old.get("listed", True):
-                before = latest(old["m"].values())
+                prev_all = {**old.get("gone_m", {}), **old["m"]}
+                before = latest(prev_all.values())
                 after = latest(now_m.values())
-                newer = [{"no": no, "after": t} for no, t in now_m.items() if t and t > old["m"].get(no, "")]
+                newer = [{"no": no, "after": t} for no, t in now_m.items() if t and t > prev_all.get(no, "")]
                 if newer:
                     gap = gap_hours(before, after)
                     events.append({"kind": "revived", "k": k, "before": before, "gap": gap, "machines": newer})
@@ -355,12 +359,23 @@ def main():
                 st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk}
                 continue
 
-            ups, added = [], []
+            ups, added, back = [], [], []
+            # 店は載ったまま一部の台だけ消えることがある。消えた台の最後の時刻を覚えておき、
+            # 同じ時刻で戻ったら知らせない（表示の乱れ）、新しい時刻で戻ったら「戻った」として知らせる
+            gone_m = dict(old.get("gone_m", {}))
             for no, t in now_m.items():
                 before = old["m"].get(no)
                 if before is None:
-                    added.append({"no": no, "after": t})
-                    history.append([checked_at, k, no, "", t, "", "台が増えた・通知"])
+                    last = gone_m.pop(no, None)
+                    if last is None:
+                        added.append({"no": no, "after": t})
+                        history.append([checked_at, k, no, "", t, "", "台が増えた・通知"])
+                    elif t and t > last:
+                        gap = gap_hours(last, t)
+                        back.append({"no": no, "before": last, "after": t, "gap": gap})
+                        history.append([checked_at, k, no, last, t, "" if gap is None else f"{gap:.1f}", "台が戻った・通知"])
+                    else:
+                        history.append([checked_at, k, no, last, t, "", "台の再掲載（更新なし）"])
                 elif t != before:
                     gap = gap_hours(before, t)
                     notify = gap is not None and gap >= MIN_GAP_HOURS
@@ -369,12 +384,17 @@ def main():
                     history.append([checked_at, k, no, before, t, "" if gap is None else f"{gap:.1f}", "更新・通知" if notify else "更新"])
             for no in old["m"]:
                 if no not in now_m:
+                    gone_m[no] = old["m"][no]
                     history.append([checked_at, k, no, old["m"][no], "", "", "台が消えた"])
             if ups:
                 events.append({"kind": "update", "k": k, "machines": ups})
+            if back:
+                events.append({"kind": "machine_back", "k": k, "machines": back})
             if added:
                 events.append({"kind": "added", "k": k, "machines": added})
             st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk}
+            if gone_m:
+                st[k]["gone_m"] = gone_m
 
         # この地域の店で、今回の一覧に出なかった店
         for k, v in st.items():
