@@ -1,0 +1,42 @@
+name: 取扱店舗の最終更新を見張る
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # 10 分おき（GitHub の都合で数分〜20 分ほど遅れることがある）
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "変化がなくても今の状態を Discord に送る（動作確認）"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 公式サイトを調べて通知する
+        env:
+          STORES: ${{ secrets.STORES }}   # 公開リポジトリのログに店名が出ないよう Secrets に入れる
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          NOTIFY_TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.test && '1' || '0' }}
+        run: python3 watch.py
+
+      - name: 状態を保存する
+        run: |
+          if [ -n "$(git status --porcelain state.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add state.json
+            git commit -m "状態を更新"
+            git push
+          fi
