@@ -75,10 +75,25 @@ def parse_stores(page):
     return stores
 
 
+PREFS = ("北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 茨城県 栃木県 群馬県 埼玉県 千葉県 東京都 神奈川県 "
+         "新潟県 富山県 石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 "
+         "奈良県 和歌山県 鳥取県 島根県 岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 福岡県 佐賀県 "
+         "長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県").split()
+
+
+def split_pref(query):
+    """「愛知県小牧市」のように県名で始まっていれば、県の番号と残りの言葉に分ける（苫小牧市などを除くため）。"""
+    for i, name in enumerate(PREFS, 1):
+        if query.startswith(name):
+            return f"{i:02d}", query[len(name):].strip()
+    return "", query
+
+
 def search(query):
+    pref, free = split_pref(query)
     found = []
     for p in range(1, MAX_PAGES + 1):
-        page = fetch({"free": query, "pref": "", "city": "", "p": p})
+        page = fetch({"free": free, "pref": pref, "city": "", "p": p})
         found += parse_stores(page)
         if f"p={p + 1}'" not in page and f"p={p + 1}\"" not in page:
             break
@@ -87,7 +102,7 @@ def search(query):
     for s in found:
         uniq.setdefault((s["name"], s["address"]), s)
     found = list(uniq.values())
-    exact = [s for s in found if s["name"] == query]
+    exact = [s for s in found if s["name"] == free]
     return exact or found
 
 
@@ -199,9 +214,20 @@ def main():
             if k not in seen_keys:
                 del stores_state[k]
 
+    # 1 回分の通知は 1 通にまとめる（Discord の 1 通は 2000 文字まで）
+    chunks, cur = [], ""
     for msg in messages:
-        send(msg)
-    log(f"通知 {len(messages)} 件")
+        msg = msg[:1900]
+        if cur and len(cur) + 2 + len(msg) > 1900:
+            chunks.append(cur)
+            cur = ""
+        cur = cur + "\n\n" + msg if cur else msg
+    if cur:
+        chunks.append(cur)
+    for c in chunks:
+        send(c)
+        time.sleep(1)
+    log(f"通知 {len(messages)} 件（{len(chunks)} 通）")
 
     tmp = STATE_FILE + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
