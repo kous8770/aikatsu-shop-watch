@@ -1,3 +1,5 @@
 __pycache__/
 *.tmp
 test_state.json
+test_state.json
+test_history.csv
