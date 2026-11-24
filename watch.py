@@ -1,4 +1,5 @@
-"""アイカツ！アンコール公式サイトの取扱店舗の「最終更新」を見張り、変わったら Discord に知らせる。
+"""アイカツ！アンコール公式サイトの取扱店舗の「最終更新」を見張り、新しく稼働し始めたと思われるとき
+（前回の更新から MIN_GAP_HOURS 時間以上たってから更新されたとき、台が増えたとき）に Discord に知らせる。
 
 環境変数
   STORES               見張る店名。1 行に 1 店（改行かカンマ区切り）。公式サイトの検索欄と同じ「おみせのなまえや住所」で探す。
@@ -6,11 +7,15 @@
   STATE_FILE           前回の状態を保存するファイル（既定：state.json）
   DRY_RUN=1            Discord に送らず、送る内容を画面に出す（この PC で試すとき）
   NOTIFY_TEST=1        変化がなくても、今の状態を Discord に送る（手動の動作確認）
+  MIN_GAP_HOURS        何時間以上ぶりの更新で知らせるか（既定：24）
+  HISTORY_FILE         すべての更新を書き残すファイル（既定：history.csv。基準の見直し用）
 
 公開リポジトリのログは誰でも見られるので、DRY_RUN でないときは店名をログに出さない。
 状態ファイルにも店名は書かず、店名と住所のハッシュだけを書く。
 """
 
+import csv
+import datetime
 import hashlib
 import html
 import json
@@ -28,6 +33,37 @@ DRY_RUN = os.environ.get("DRY_RUN") == "1"
 NOTIFY_TEST = os.environ.get("NOTIFY_TEST") == "1"
 STATE_FILE = os.environ.get("STATE_FILE", "state.json")
 MAX_PAGES = 20
+MIN_GAP_HOURS = float(os.environ.get("MIN_GAP_HOURS") or 24)
+HISTORY_FILE = os.environ.get("HISTORY_FILE", "history.csv")
+JST = datetime.timezone(datetime.timedelta(hours=9))
+
+
+def parse_time(t):
+    try:
+        return datetime.datetime.strptime(t, "%Y-%m-%d %H:%M:%S")
+    except (TypeError, ValueError):
+        return None
+
+
+def gap_hours(before, after):
+    a, b = parse_time(before), parse_time(after)
+    return (b - a).total_seconds() / 3600 if a and b else None
+
+
+def gap_text(h):
+    h = int(h)
+    return f"{h // 24}日{h % 24}時間" if h >= 48 else f"{h}時間"
+
+
+def write_history(rows):
+    if not rows:
+        return
+    new = not os.path.exists(HISTORY_FILE)
+    with open(HISTORY_FILE, "a", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        if new:
+            w.writerow(["記録した時刻", "店（ハッシュ）", "台", "前回の更新", "今回の更新", "間隔（時間）", "通知"])
+        w.writerows(rows)
 
 
 def log(msg):
@@ -159,6 +195,8 @@ def main():
     missing_state = state.setdefault("missing", [])
 
     messages = []
+    history = []
+    checked_at = datetime.datetime.now(JST).strftime("%Y-%m-%d %H:%M")
     seen_keys = set()
     errors = 0
     for qi, q in enumerate(queries, 1):
@@ -194,14 +232,21 @@ def main():
                 for m in s["machines"]:
                     before = old.get(m["no"])
                     if before is None:
+                        # 台が増えた＝入荷して稼働を始めた可能性が高いので知らせる
                         lines.append(f"　🆕 {m['no']}台目が増えました　最終更新 {short_time(m['updated'])}　排出：{cards_text(m['cards'])}")
+                        history.append([checked_at, k, m["no"], "", m["updated"], "", "台が増えた"])
                     elif before != m["updated"]:
-                        lines.append(f"　{m['no']}台目　最終更新 {short_time(before)} → **{short_time(m['updated'])}**　排出：{cards_text(m['cards'])}")
+                        # 長く更新がなかった台が更新された＝稼働を始めた（再開した）と考えて知らせる。短い間隔の更新は記録だけ
+                        gap = gap_hours(before, m["updated"])
+                        notify = gap is not None and gap >= MIN_GAP_HOURS
+                        if notify:
+                            lines.append(f"　{m['no']}台目　**{gap_text(gap)}ぶり**の更新　{short_time(before)} → **{short_time(m['updated'])}**　排出：{cards_text(m['cards'])}")
+                        history.append([checked_at, k, m["no"], before, m["updated"], "" if gap is None else f"{gap:.1f}", "通知" if notify else ""])
                 for no in old:
                     if no not in now:
-                        lines.append(f"　➖ {no}台目が一覧から消えました")
+                        history.append([checked_at, k, no, old[no], "", "", "台が消えた"])
                 if lines:
-                    messages.append("\n".join([f"🔔 {head} の最終更新が変わりました"] + lines + [f"<{store_link(s)}>"]))
+                    messages.append("\n".join([f"🟢 {head} が稼働を始めたかも"] + lines + [f"<{store_link(s)}>"]))
                 elif NOTIFY_TEST:
                     lines = [f"🧪 動作確認：{head}（{len(s['machines'])} 台、変化なし）"]
                     lines += [f"　{m['no']}台目　最終更新 {short_time(m['updated'])}　排出：{cards_text(m['cards'])}" for m in s["machines"]]
@@ -228,6 +273,9 @@ def main():
         send(c)
         time.sleep(1)
     log(f"通知 {len(messages)} 件（{len(chunks)} 通）")
+
+    write_history(history)
+    log(f"更新 {len(history)} 件（通知しなかった分も含む）")
 
     tmp = STATE_FILE + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:

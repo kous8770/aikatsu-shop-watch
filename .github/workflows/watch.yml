@@ -28,15 +28,17 @@ jobs:
         env:
           STORES: ${{ secrets.STORES }}   # 公開リポジトリのログに店名が出ないよう Secrets に入れる
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          MIN_GAP_HOURS: "24"   # 何時間以上ぶりの更新で知らせるか
           NOTIFY_TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.test && '1' || '0' }}
         run: python3 watch.py
 
       - name: 状態を保存する
         run: |
-          if [ -n "$(git status --porcelain state.json)" ]; then
+          if [ -n "$(git status --porcelain)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add state.json
+            [ -f history.csv ] && git add history.csv
             git commit -m "状態を更新"
             git pull --rebase -q   # 途中でプログラムが更新されていても保存できるようにする
             git push
