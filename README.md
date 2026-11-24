@@ -32,8 +32,17 @@ GitHub Actions で 10 分おきに動きます（GitHub の都合で数分〜20 
 店名は Secrets に入れるので、公開リポジトリのログには出ません。`state.json` と `history.csv` にも店名は書かず、ハッシュだけを書きます。
 `STORES` に新しく加えた地域は、その回の店を基準として記録し、「見張りに加えました」を送ります（その地域の店はこの回は 🆕 にしない）。
 
+## 10 分おきに起こす（cron-job.org）
+GitHub の定期実行（schedule）は 10 分おきに指定しても間引かれ、実際は約 1 時間おきになる。そのため、無料の cron-job.org から 10 分おきに GitHub の API を呼んで起こす。GitHub の定期実行は予備として残す。
+
+- 呼ぶ先：`POST https://api.github.com/repos/kous8770/aikatsu-shop-watch/actions/workflows/watch.yml/dispatches`
+- ヘッダー：`Accept: application/vnd.github+json`、`Authorization: Bearer （GitHub の鍵）`、`X-GitHub-Api-Version: 2022-11-28`
+- 本文：`{"ref":"main","inputs":{"test":"false"}}`
+- 成功すると 204 が返る。
+- GitHub の鍵は fine-grained personal access token。対象のリポジトリはこの 1 つだけ、権限は Actions の Read and write だけ。期限が切れたら作り直して cron-job.org の Authorization を入れ替える。
+
 ## 動作確認
-Actions タブ →「取扱店舗の最終更新を見張る」→「Run workflow」。チェックを入れたままだと、変化がなくても今の最終更新が Discord に届きます。
+Actions タブ →「取扱店舗の最終更新を見張る」→「Run workflow」。チェックを入れると、変化がなくても今の最終更新が Discord に届きます（既定はチェックなし）。
 
 ## この PC で試す（Discord には送らない）
 ```bash

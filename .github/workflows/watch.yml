@@ -2,13 +2,14 @@ name: 取扱店舗の最終更新を見張る
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # 10 分おき（GitHub の都合で数分〜20 分ほど遅れることがある）
+    - cron: "*/10 * * * *"   # 10 分おきの指定だが、GitHub が間引いて実際は約 1 時間おき（予備）。
+                             # 主な起動は cron-job.org から 10 分おきに workflow_dispatch を呼ぶ（README 参照）
   workflow_dispatch:
     inputs:
       test:
         description: "変化がなくても今の状態を Discord に送る（動作確認）"
         type: boolean
-        default: true
+        default: false   # 外（cron-job.org）から起こすときに毎回送らないよう、既定は「送らない」
 
 permissions:
   contents: write
@@ -31,7 +32,7 @@ jobs:
           MIN_GAP_HOURS: "36"   # 何時間以上ぶりの更新で知らせるか
           QUIET_START: "22"     # この時刻から
           QUIET_END: "8"        # この時刻までは通知をためて、朝にまとめて送る（日本時間）
-          NOTIFY_TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.test && '1' || '0' }}
+          NOTIFY_TEST: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.test) == 'true' && '1' || '0' }}
         run: python3 watch.py
 
       - name: 状態を保存する
