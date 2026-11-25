@@ -32,6 +32,15 @@
    "カード切れ停止中",
    "",
    "状態が変わった"
+  ],
+  [
+   "2026-11-25 22:30",
+   "fbdc4d0809bba5d8",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
   ]
  ],
  "queries": [
@@ -459,7 +468,7 @@
    "n": "PfLlDI1tT81mgaFkEDHlyrs+BtH9dveoFHV093TzGxgHfWXfNjdLDHhZFcBOOY7AnsW6wPwd0iU6u9kXLradpJsF3vU2k1lZ5dCYnBEQ/L1T61FJI5gX8xwH/AYTeXFPiu4wBiSb7n2i0I2pSOmV7KWFVL6fQKM=",
    "q": "9e6d0450cf492a7e",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "fc59e391aa15647a": {
