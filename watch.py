@@ -522,7 +522,7 @@ def main():
                         history.append([checked_at, k, no, old_c[no], c, "", "弾が変わった・通知"])
             if cards_changed:
                 events.append({"kind": "cards", "k": k, "machines": cards_changed})
-            # 台の状態の変化。カード切れ停止中 → 稼働中 は補充の合図なので、大事な方へ夜でもすぐ送る。ほかは更新ログだけ
+            # 台の状態の変化。カード切れ停止中 → 稼働中 は補充の合図なので大事な方へ（夜は朝にまとめる）。ほかは更新ログだけ
             restocked = []
             if old_s is not None:
                 for no, stt in now_s.items():
@@ -583,10 +583,7 @@ def main():
     # 夜はためておき、朝に送る
     sent = 0
     if quiet:
-        urgent = [ev for ev in events if ev["kind"] == "restock"]
-        state["pending"] += [ev for ev in events if ev["kind"] != "restock"]
-        if urgent:
-            sent += send_chunks(f"**公式更新ウォッチ（{now.strftime('%H:%M')}時点）**", [describe(ev, names) for ev in urgent], DISCLAIMER)
+        state["pending"] += events
     else:
         held = state["pending"]
         state["pending"] = []
