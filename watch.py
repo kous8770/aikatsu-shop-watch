@@ -191,6 +191,8 @@ def describe(ev, names):
         parts = [f"{m['no']}台目：{short_time(m['before'])} → {short_time(m['after'])}、{gap_text(m['gap'])}" for m in ev["machines"]]
         return f"🟢 **{name}**（{'／'.join(parts)}）"
     if kind == "revived":
+        if all(not m["after"] for m in ev["machines"]):
+            return f"🔁 **{name}** 台データ復活（{len(ev['machines'])}台。前回の最終更新 {short_time(ev['before'])}。今は公式に時刻の表示なし）"
         parts = [f"{m['no']}台目：{short_time(m['after'])}" for m in ev["machines"]]
         return f"🔁 **{name}** 台データ復活（{gap_text(ev['gap'])}。前回の最終更新 {short_time(ev['before'])} → {'／'.join(parts)}）"
     if kind == "new":
@@ -206,6 +208,11 @@ def describe(ev, names):
         return f"⚠️ 公式サイトを読めない状態が続いています（{ev['since']} から）。この間の変化は、読めるようになってから知らせます。"
     if kind == "recovered":
         return "✅ 公式サイトを読めるようになりました。"
+    if kind == "no_time":
+        return ("⚠️ 公式サイトの取扱店舗に、台ごとの「最終更新」の時刻が表示されなくなりました。"
+                "表示が戻るまで、更新（🟢）の通知はできません。店が載った・消えた（🔁 🆕）と台数の変化は引き続き見ます。")
+    if kind == "time_back":
+        return "✅ 公式サイトに「最終更新」の時刻が戻りました。更新の通知を再開します。"
     return ""
 
 
@@ -279,6 +286,8 @@ def describe_log(rows, names):
                 parts.append(f"新規掲載 {short_time(after)}")
             elif kind == "台が増えた・通知":
                 parts.append(f"{who} 増えた {short_time(after)}")
+            elif kind == "復活・通知" and not after:
+                parts.append(f"復活（前回 {short_time(before)}。今は公式に時刻の表示なし）")
             elif kind == "復活・通知":
                 parts.append(f"復活 {short_time(before)} → {short_time(after)}{g}")
             elif kind == "台が戻った・通知":
@@ -337,6 +346,9 @@ def main():
     events, history, info_lines, test_lines = [], [], [], []
     names = {}
     errors = 0
+    seen_machines = timeless = 0
+    # 時刻の表示が消えていた間の更新は見えていないので、表示が戻った最初の回は 🟢（36 時間以上ぶり）を出さない
+    was_no_time = bool(state.get("no_time"))
     for qi, q in enumerate(queries, 1):
         qk = qkey_of(q)
         try:
@@ -363,7 +375,15 @@ def main():
             k = key_of(s)
             names[k] = s["name"]
             now_m = {m["no"]: m["updated"] for m in s["machines"]}
+            raw_m = dict(now_m)
             old = st.get(k)
+            # 公式サイトに時刻が出ていない台（2026-11-25 13:30 から全台で表示が消えた）は「更新なし」とみなし、
+            # 覚えている時刻をそのまま使う（空で上書きすると、36 時間の判定や復活の判定ができなくなるため）
+            seen_machines += len(now_m)
+            timeless += sum(1 for t in now_m.values() if not t)
+            if old is not None:
+                known = {**old.get("gone_m", {}), **old["m"]}
+                now_m = {no: (t or known.get(no, "")) for no, t in now_m.items()}
             if NOTIFY_TEST:
                 test_lines.append(f"🧪 **{s['name']}**（" + "／".join(f"{m['no']}台目：{short_time(m['updated'])}" for m in s["machines"]) + "）")
 
@@ -380,7 +400,13 @@ def main():
                 before = latest(prev_all.values())
                 after = latest(now_m.values())
                 newer = [{"no": no, "after": t} for no, t in now_m.items() if t and t > prev_all.get(no, "")]
-                if newer:
+                no_time_store = bool(raw_m) and all(not t for t in raw_m.values())
+                if not newer and no_time_store and old.get("gone_at"):
+                    # 公式サイトに時刻が出ていない間は、一覧に戻ったこと自体を復活として知らせる
+                    events.append({"kind": "revived", "k": k, "before": before, "gap": None,
+                                   "machines": [{"no": no, "after": ""} for no in raw_m]})
+                    history.append([checked_at, k, "", before, "", "", "復活・通知"])
+                elif newer:
                     gap = gap_hours(before, after)
                     events.append({"kind": "revived", "k": k, "before": before, "gap": gap, "machines": newer})
                     history.append([checked_at, k, "", before, after, "" if gap is None else f"{gap:.1f}", "復活・通知"])
@@ -409,7 +435,7 @@ def main():
                         history.append([checked_at, k, no, last, t, "", "台の再掲載（更新なし）"])
                 elif t != before:
                     gap = gap_hours(before, t)
-                    notify = gap is not None and gap >= MIN_GAP_HOURS
+                    notify = gap is not None and gap >= MIN_GAP_HOURS and not was_no_time
                     if notify:
                         ups.append({"no": no, "before": before, "after": t, "gap": gap})
                     history.append([checked_at, k, no, before, t, "" if gap is None else f"{gap:.1f}", "更新・通知" if notify else "更新"])
@@ -438,6 +464,16 @@ def main():
         if qk not in state["queries"]:
             state["queries"].append(qk)
 
+    # 公式サイトで最終更新の時刻が表示されなくなった／戻ったら、1 回だけ知らせる
+    if not errors and seen_machines:
+        no_time_now = timeless == seen_machines
+        if no_time_now and not state.get("no_time"):
+            state["no_time"] = checked_at
+            events.append({"kind": "no_time", "k": ""})
+        elif not no_time_now and state.get("no_time"):
+            state.pop("no_time", None)
+            events.append({"kind": "time_back", "k": ""})
+
     # 読めなかった回の数え方（失敗を「変化なし」とは言わない）
     if errors:
         if state["fail"] == 0:
@@ -464,7 +500,7 @@ def main():
         lines = [x for x in lines if x]
         if lines:
             header = f"**公式更新ウォッチ（{now.strftime('%H:%M')}時点）**" + ("　※夜の間の分も含みます" if held else "")
-            footer = DISCLAIMER if any(ev["kind"] not in ("fail", "recovered") for ev in held + events) else ""
+            footer = DISCLAIMER if any(ev["kind"] not in ("fail", "recovered", "no_time", "time_back") for ev in held + events) else ""
             sent += send_chunks(header, lines, footer)
     # 2 つ目のチャンネル：36 時間以内も含むすべての最終更新の変化（設定されているときだけ）
     if os.environ.get("DISCORD_WEBHOOK_URL_ALL", "").strip() or (DRY_RUN and os.environ.get("DRY_RUN_ALL") == "1"):
