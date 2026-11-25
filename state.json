@@ -41,6 +41,15 @@
    "オフライン",
    "",
    "状態が変わった"
+  ],
+  [
+   "2026-11-25 23:02",
+   "fc59e391aa15647a",
+   "",
+   "2026-11-22 09:03:07",
+   "",
+   "",
+   "一覧から消えた"
   ]
  ],
  "queries": [
@@ -473,11 +482,12 @@
   },
   "fc59e391aa15647a": {
    "c": {},
-   "listed": true,
+   "gone_at": "2026-11-25 23:02",
+   "listed": false,
    "m": {
     "1": "2026-11-22 09:03:07"
    },
-   "miss": 2,
+   "miss": 3,
    "n": "ZEZfCpLd46UCr8V7lYbnW0SfVGkFYN3Sd9J1cxervWA3zTUtrhqPQ0H1PJibbLij1z8UA5BVNx289YENNvqsjMpLxgFpIHa54g==",
    "q": "80eef005f12067ba",
    "s": {
