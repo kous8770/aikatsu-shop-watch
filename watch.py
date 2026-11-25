@@ -99,10 +99,15 @@ def parse_stores(page):
             no = re.search(r'class="runningItemNum"><span class="num">(\d+)', item)
             upd = re.search(r'最終更新：<span title="([^"]*)"', item)
             cards = [text(c) for c in re.findall(r'<li class="runningCardItem[^"]*">(.*?)</li>', item, re.S)]
+            # 台の状態（2026-11-25 14 時台から表示）：「排出されるカード」なら稼働中、ほかは「オフライン」「カード切れ停止中」など
+            lab = re.search(r'<div class="runningCard(?:\s[^"]*)?">(.*?)</div>', item, re.S)
+            label = text(lab.group(1)) if lab else ""
+            status = "稼働中" if label == "排出されるカード" else label
             machines.append({
                 "no": no.group(1) if no else str(len(machines) + 1),
                 "updated": upd.group(1) if upd else "",
                 "cards": [c for c in cards if c],
+                "status": status,
             })
         if name:
             stores.append({"name": text(name.group(1)), "address": text(addr.group(1)) if addr else "", "machines": machines})
@@ -237,6 +242,9 @@ def describe(ev, names):
     if kind == "added":
         parts = [f"{m['no']}台目：{short_time(m['after'])}" for m in ev["machines"]]
         return f"➕ **{name}** 台が増えました（{'／'.join(parts)}）"
+    if kind == "restock":
+        parts = [f"{m['no']}台目" + (f"（{m['after']}）" if m["after"] else "") for m in ev["machines"]]
+        return f"✨ **{name}** カード切れ停止中 → **稼働中**：{'／'.join(parts)}　カードが補充されたかもしれません"
     if kind == "cards":
         parts = [f"{m['no']}台目：{m['before']} → **{m['after']}**" for m in ev["machines"]]
         return f"🆙 **{name}** 排出されるカードが変わりました（{'／'.join(parts)}）"
@@ -303,7 +311,8 @@ def send_chunks(header, lines, footer, env="DISCORD_WEBHOOK_URL"):
 
 # すべての更新を送る 2 つ目のチャンネル（DISCORD_WEBHOOK_URL_ALL）に載せる記録の種類と印
 LOG_MARKS = {"更新": "・", "更新・通知": "🟢", "復活・通知": "🔁", "新規・通知": "🆕", "台が増えた・通知": "➕", "台が戻った・通知": "🔁",
-             "弾が変わった・通知": "🆙", "台が戻った（時刻なし）": "↩️", "台が消えた": "➖", "一覧から消えた": "➖"}
+             "弾が変わった・通知": "🆙", "台が戻った（時刻なし）": "↩️", "台が消えた": "➖", "一覧から消えた": "➖",
+             "カード切れ→稼働・通知": "✨", "状態が変わった": "🔸"}
 
 
 def describe_log(rows, names):
@@ -331,6 +340,8 @@ def describe_log(rows, names):
                 parts.append(f"{who} 戻った {short_time(before)} → {short_time(after)}{g}")
             elif kind == "台が戻った（時刻なし）":
                 parts.append(f"{who} 戻った（前回 {short_time(before)}。今は時刻の表示なし）")
+            elif kind in ("カード切れ→稼働・通知", "状態が変わった"):
+                parts.append(f"{who} {before} → {after}")
             elif kind == "弾が変わった・通知":
                 parts.append(f"{who} 排出カード {before} → {after}")
             elif kind == "台が消えた":
@@ -424,7 +435,9 @@ def main():
             old = st.get(k)
             now_c = cards_of(s)
             old_c = old.get("c") if old else None
-            keep = {"n": enc_name(k, s), "c": {**(old_c or {}), **now_c}}
+            now_s = {m["no"]: m["status"] for m in s["machines"] if m.get("status")}
+            old_s = old.get("s") if old else None
+            keep = {"n": enc_name(k, s), "c": {**(old_c or {}), **now_c}, "s": {**(old_s or {}), **now_s}}
             # 公式サイトに時刻が出ていない台（2026-11-25 13:30 から全台で表示が消えた）は「更新なし」とみなし、
             # 覚えている時刻をそのまま使う（空で上書きすると、36 時間の判定や復活の判定ができなくなるため）
             seen_machines += len(now_m)
@@ -509,6 +522,18 @@ def main():
                         history.append([checked_at, k, no, old_c[no], c, "", "弾が変わった・通知"])
             if cards_changed:
                 events.append({"kind": "cards", "k": k, "machines": cards_changed})
+            # 台の状態の変化。カード切れ停止中 → 稼働中 は補充の合図なので、大事な方へ夜でもすぐ送る。ほかは更新ログだけ
+            restocked = []
+            if old_s is not None:
+                for no, stt in now_s.items():
+                    if no in old_s and stt != old_s[no]:
+                        if "カード切れ" in old_s[no] and stt == "稼働中":
+                            restocked.append({"no": no, "before": old_s[no], "after": now_c.get(no, "")})
+                            history.append([checked_at, k, no, old_s[no], stt, "", "カード切れ→稼働・通知"])
+                        else:
+                            history.append([checked_at, k, no, old_s[no], stt, "", "状態が変わった"])
+            if restocked:
+                events.append({"kind": "restock", "k": k, "machines": restocked})
             st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk, **keep}
             if gone_m:
                 st[k]["gone_m"] = gone_m
@@ -558,7 +583,10 @@ def main():
     # 夜はためておき、朝に送る
     sent = 0
     if quiet:
-        state["pending"] += events
+        urgent = [ev for ev in events if ev["kind"] == "restock"]
+        state["pending"] += [ev for ev in events if ev["kind"] != "restock"]
+        if urgent:
+            sent += send_chunks(f"**公式更新ウォッチ（{now.strftime('%H:%M')}時点）**", [describe(ev, names) for ev in urgent], DISCLAIMER)
     else:
         held = state["pending"]
         state["pending"] = []
