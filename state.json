@@ -4,7 +4,36 @@
  "fail": 0,
  "fail_since": "",
  "no_time": "2026-11-25 14:00",
- "pending": [],
+ "pending": [
+  {
+   "before": "2026-11-22 09:03:07",
+   "gap": null,
+   "k": "fc59e391aa15647a",
+   "kind": "revived",
+   "machines": [
+    {
+     "after": "",
+     "no": "1"
+    }
+   ]
+  },
+  {
+   "before": "2026-11-22 09:43:26",
+   "gap": null,
+   "k": "51f0dc4bad07f7a2",
+   "kind": "revived",
+   "machines": [
+    {
+     "after": "",
+     "no": "1"
+    },
+    {
+     "after": "",
+     "no": "2"
+    }
+   ]
+  }
+ ],
  "pending_all": [
   [
    "2026-11-25 22:00",
@@ -113,6 +142,24 @@
    "オフライン",
    "",
    "状態が変わった"
+  ],
+  [
+   "2026-11-26 00:20",
+   "fc59e391aa15647a",
+   "",
+   "2026-11-22 09:03:07",
+   "",
+   "",
+   "復活・通知"
+  ],
+  [
+   "2026-11-26 00:20",
+   "51f0dc4bad07f7a2",
+   "",
+   "2026-11-22 09:43:26",
+   "",
+   "",
+   "復活・通知"
   ]
  ],
  "queries": [
@@ -300,14 +347,19 @@
    }
   },
   "51f0dc4bad07f7a2": {
-   "gone_at": "2026-11-25 12:30",
-   "listed": false,
+   "c": {},
+   "listed": true,
    "m": {
     "1": "2026-11-22 09:43:25",
     "2": "2026-11-22 09:43:26"
    },
-   "miss": 3,
-   "q": "085cc47680a3b8d8"
+   "miss": 0,
+   "n": "6h7Oc7DCarp49lAaNKscwelesrfxjNkE7622kNFgaUhLOf7LQKOGeLLdKWRFJ5QB+kJVEpA7ISW4DV9mfCnmGqU=",
+   "q": "085cc47680a3b8d8",
+   "s": {
+    "1": "オフライン",
+    "2": "オフライン"
+   }
   },
   "723810e7a810ca71": {
    "c": {
@@ -545,12 +597,11 @@
   },
   "fc59e391aa15647a": {
    "c": {},
-   "gone_at": "2026-11-25 23:02",
-   "listed": false,
+   "listed": true,
    "m": {
     "1": "2026-11-22 09:03:07"
    },
-   "miss": 3,
+   "miss": 0,
    "n": "ZEZfCpLd46UCr8V7lYbnW0SfVGkFYN3Sd9J1cxervWA3zTUtrhqPQ0H1PJibbLij1z8UA5BVNx289YENNvqsjMpLxgFpIHa54g==",
    "q": "80eef005f12067ba",
    "s": {
