@@ -4,9 +4,10 @@
   - 久しぶりの更新：台の最終更新が、前回の記録から MIN_GAP_HOURS 時間以上たって新しくなった
   - 台データ復活：一覧から消えていた店（台のデータがない店は公式サイトの検索に出ない）が、新しい最終更新で戻ってきた
   - 台データ新規：見張っている地域に、見張り始めてから初めて載った店
-  - 台が増えた
-知らせないもの（history.csv に記録だけ）
+  - 台が増えた、排出されるカード（弾）が変わった
+知らせないもの（history.csv に記録だけ。2 つ目のチャンネル DISCORD_WEBHOOK_URL_ALL には流す）
   - 短い間隔の更新、台が消えた、店が一覧から消えた
+2026-11-25 13:30 から公式サイトに最終更新の時刻が出なくなった。時刻がない間は、店が載った・消えた、台数、弾の変化だけを見る。
 夜（QUIET_START 時〜QUIET_END 時）は調べて記録するが、通知はためておき、朝に 1 通で送る。
 
 環境変数
@@ -24,6 +25,7 @@
 状態ファイルと記録にも店名は書かず、店名と住所のハッシュだけを書く。
 """
 
+import base64
 import csv
 import datetime
 import hashlib
@@ -96,7 +98,7 @@ def parse_stores(page):
         for item in re.split(r'<li class="runningItem">', b)[1:]:
             no = re.search(r'class="runningItemNum"><span class="num">(\d+)', item)
             upd = re.search(r'最終更新：<span title="([^"]*)"', item)
-            cards = [text(c) for c in re.findall(r'<li class="runningCardItem">(.*?)</li>', item, re.S)]
+            cards = [text(c) for c in re.findall(r'<li class="runningCardItem[^"]*">(.*?)</li>', item, re.S)]
             machines.append({
                 "no": no.group(1) if no else str(len(machines) + 1),
                 "updated": upd.group(1) if upd else "",
@@ -155,6 +157,37 @@ def qkey_of(query):
     return hashlib.sha256(query.encode("utf-8")).hexdigest()[:16]
 
 
+def _keystream(k, n):
+    """店名を state.json（公開）に暗号化して覚えるための鍵の列。鍵は Secrets の STORES から作る。"""
+    key = hashlib.sha256(("names|" + os.environ.get("STORES", "")).encode("utf-8")).digest()
+    out, i = b"", 0
+    while len(out) < n:
+        out += hashlib.sha256(key + k.encode("utf-8") + i.to_bytes(4, "big")).digest()
+        i += 1
+    return out[:n]
+
+
+def enc_name(k, store):
+    b = (store["name"] + "|" + store["address"]).encode("utf-8")
+    return base64.b64encode(bytes(x ^ y for x, y in zip(b, _keystream(k, len(b))))).decode("ascii")
+
+
+def dec_name(k, e):
+    """一覧から消えた店の名前を出すため。鍵が違えば None（ハッシュで確かめる）。"""
+    try:
+        b = base64.b64decode(e)
+        t = bytes(x ^ y for x, y in zip(b, _keystream(k, len(b)))).decode("utf-8")
+        if hashlib.sha256(t.encode("utf-8")).hexdigest()[:16] == k:
+            return t.split("|")[0]
+    except (ValueError, UnicodeDecodeError):
+        pass
+    return None
+
+
+def cards_of(store):
+    return {m["no"]: "・".join(m["cards"]) for m in store["machines"] if m["cards"]}
+
+
 def parse_time(t):
     try:
         return datetime.datetime.strptime(t, "%Y-%m-%d %H:%M:%S")
@@ -204,13 +237,16 @@ def describe(ev, names):
     if kind == "added":
         parts = [f"{m['no']}台目：{short_time(m['after'])}" for m in ev["machines"]]
         return f"➕ **{name}** 台が増えました（{'／'.join(parts)}）"
+    if kind == "cards":
+        parts = [f"{m['no']}台目：{m['before']} → **{m['after']}**" for m in ev["machines"]]
+        return f"🆙 **{name}** 排出されるカードが変わりました（{'／'.join(parts)}）"
     if kind == "fail":
         return f"⚠️ 公式サイトを読めない状態が続いています（{ev['since']} から）。この間の変化は、読めるようになってから知らせます。"
     if kind == "recovered":
         return "✅ 公式サイトを読めるようになりました。"
     if kind == "no_time":
         return ("⚠️ 公式サイトの取扱店舗に、台ごとの「最終更新」の時刻が表示されなくなりました。"
-                "表示が戻るまで、更新（🟢）の通知はできません。店が載った・消えた（🔁 🆕）と台数の変化は引き続き見ます。")
+                "表示が戻るまで、更新（🟢）の通知はできません。店が載った・消えた（🔁 🆕）、台数（➕）、排出カードの弾（🆙）の変化は引き続き見ます。")
     if kind == "time_back":
         return "✅ 公式サイトに「最終更新」の時刻が戻りました。更新の通知を再開します。"
     return ""
@@ -266,7 +302,8 @@ def send_chunks(header, lines, footer, env="DISCORD_WEBHOOK_URL"):
 
 
 # すべての更新を送る 2 つ目のチャンネル（DISCORD_WEBHOOK_URL_ALL）に載せる記録の種類と印
-LOG_MARKS = {"更新": "・", "更新・通知": "🟢", "復活・通知": "🔁", "新規・通知": "🆕", "台が増えた・通知": "➕", "台が戻った・通知": "🔁"}
+LOG_MARKS = {"更新": "・", "更新・通知": "🟢", "復活・通知": "🔁", "新規・通知": "🆕", "台が増えた・通知": "➕", "台が戻った・通知": "🔁",
+             "弾が変わった・通知": "🆙", "台が戻った（時刻なし）": "↩️", "台が消えた": "➖", "一覧から消えた": "➖"}
 
 
 def describe_log(rows, names):
@@ -292,6 +329,14 @@ def describe_log(rows, names):
                 parts.append(f"復活 {short_time(before)} → {short_time(after)}{g}")
             elif kind == "台が戻った・通知":
                 parts.append(f"{who} 戻った {short_time(before)} → {short_time(after)}{g}")
+            elif kind == "台が戻った（時刻なし）":
+                parts.append(f"{who} 戻った（前回 {short_time(before)}。今は時刻の表示なし）")
+            elif kind == "弾が変わった・通知":
+                parts.append(f"{who} 排出カード {before} → {after}")
+            elif kind == "台が消えた":
+                parts.append(f"{who} 消えた（前回 {short_time(before)}）")
+            elif kind == "一覧から消えた":
+                parts.append(f"一覧から消えた（前回の最終更新 {short_time(before)}）")
             else:
                 parts.append(f"{who} {short_time(before)} → {short_time(after)}{g}")
         lines.append(f"{mark} **{names.get(k, '（店名不明）')}**（{'／'.join(parts)}）")
@@ -377,6 +422,9 @@ def main():
             now_m = {m["no"]: m["updated"] for m in s["machines"]}
             raw_m = dict(now_m)
             old = st.get(k)
+            now_c = cards_of(s)
+            old_c = old.get("c") if old else None
+            keep = {"n": enc_name(k, s), "c": {**(old_c or {}), **now_c}}
             # 公式サイトに時刻が出ていない台（2026-11-25 13:30 から全台で表示が消えた）は「更新なし」とみなし、
             # 覚えている時刻をそのまま使う（空で上書きすると、36 時間の判定や復活の判定ができなくなるため）
             seen_machines += len(now_m)
@@ -392,7 +440,7 @@ def main():
                     ms = [{"no": no, "after": t} for no, t in now_m.items()]
                     events.append({"kind": "new", "k": k, "machines": ms})
                     history.append([checked_at, k, "", "", latest(now_m.values()), "", "新規・通知"])
-                st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk}
+                st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk, **keep}
                 continue
 
             if not old.get("listed", True):
@@ -413,7 +461,7 @@ def main():
                 else:
                     # 最終更新が前と同じまま戻った＝表示の乱れなど。知らせない
                     history.append([checked_at, k, "", before, after, "", "再掲載（更新なし）"])
-                st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk}
+                st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk, **keep}
                 continue
 
             ups, added, back = [], [], []
@@ -431,6 +479,9 @@ def main():
                         gap = gap_hours(last, t)
                         back.append({"no": no, "before": last, "after": t, "gap": gap})
                         history.append([checked_at, k, no, last, t, "" if gap is None else f"{gap:.1f}", "台が戻った・通知"])
+                    elif not raw_m.get(no):
+                        # 時刻が出ていない間は、消えていた台が戻ったこと自体を記録してログに流す（表示の乱れとは見分けられないので大事な通知にはしない）
+                        history.append([checked_at, k, no, last, "", "", "台が戻った（時刻なし）"])
                     else:
                         history.append([checked_at, k, no, last, t, "", "台の再掲載（更新なし）"])
                 elif t != before:
@@ -449,7 +500,16 @@ def main():
                 events.append({"kind": "machine_back", "k": k, "machines": back})
             if added:
                 events.append({"kind": "added", "k": k, "machines": added})
-            st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk}
+            # 排出されるカード（弾）の変化。初めて見る店・台は基準にするだけ
+            cards_changed = []
+            if old_c is not None:
+                for no, c in now_c.items():
+                    if no in old_c and c != old_c[no]:
+                        cards_changed.append({"no": no, "before": old_c[no], "after": c})
+                        history.append([checked_at, k, no, old_c[no], c, "", "弾が変わった・通知"])
+            if cards_changed:
+                events.append({"kind": "cards", "k": k, "machines": cards_changed})
+            st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk, **keep}
             if gone_m:
                 st[k]["gone_m"] = gone_m
 
@@ -487,6 +547,12 @@ def main():
         state["fail"] = 0
         state["fail_since"] = ""
 
+    for k, v in st.items():
+        if k not in names and v.get("n"):
+            n = dec_name(k, v["n"])
+            if n:
+                names[k] = n
+
     log(f"変化 {len(history)} 件、通知 {len(events)} 件" + ("（夜なのでためる）" if quiet else ""))
 
     # 夜はためておき、朝に送る
@@ -505,11 +571,14 @@ def main():
     # 2 つ目のチャンネル：36 時間以内も含むすべての最終更新の変化（設定されているときだけ）
     if os.environ.get("DISCORD_WEBHOOK_URL_ALL", "").strip() or (DRY_RUN and os.environ.get("DRY_RUN_ALL") == "1"):
         log_rows = [r for r in history if r[6] in LOG_MARKS]
-        if not state.get("all_started"):
-            send("**このチャンネルの使い方**\n見張っている店の最終更新の変化を、36 時間以内の更新も含めてすべて送ります。"
-                 "🟢 36 時間以上ぶり、🔁 復活・戻った、🆕 新規、➕ 台が増えた、・ ふつうの更新。夜 22 時〜8 時の分は朝にまとめて送ります。",
+        if not state.get("all_v2"):
+            send("**このチャンネルの使い方**" + ("（変更しました）" if state.get("all_started") else "") + "\n"
+                 "見張っている店の変化をすべて送ります。公式サイトに最終更新の時刻が出なくなったため（11/25 13:30 から）、"
+                 "今は 🔁 店が一覧に戻った、↩️ 台が戻った、🆕 新規掲載、➕ 台が増えた、➖ 台・店が一覧から消えた、🆙 排出カード（弾）が変わった、を流します。"
+                 "時刻の表示が戻ったら、🟢 36 時間以上ぶりと ・ ふつうの更新も流します。夜 22 時〜8 時の分は朝にまとめて送ります。",
                  "DISCORD_WEBHOOK_URL_ALL")
-            state["all_started"] = checked_at
+            state["all_started"] = state.get("all_started") or checked_at
+            state["all_v2"] = checked_at
             sent += 1
         if quiet:
             state.setdefault("pending_all", []).extend(log_rows)
