@@ -178,6 +178,78 @@
    "",
    "",
    "一覧から消えた"
+  ],
+  [
+   "2026-11-26 05:00",
+   "289657c496a09895",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 05:00",
+   "289657c496a09895",
+   "2",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 05:00",
+   "289657c496a09895",
+   "4",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 05:00",
+   "ab2a59ff205cbda4",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 05:00",
+   "e196d1f51636f89c",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 05:00",
+   "8151ddfbc058bf90",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 05:00",
+   "d3ce31f58e2c9144",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 05:00",
+   "ead0688295b2933b",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
   ]
  ],
  "queries": [
@@ -292,10 +364,10 @@
    "n": "tVKX+ZWuK8GIRccOvVa8zxU7yBTwkdrD9k3vV0F3yfa9dgITUBQQ6O9u0YofU/jr8MSThoALv07fVPQwDU831fJkJLrukyLmoYX+zal1fBYWYYSBxmJRrMR020hlbDgFoTE2GlTajNLIcT0MjISjfUWMzfd+0QGXIB0=",
    "q": "277bd131f15abc71",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中",
+    "1": "オフライン",
+    "2": "オフライン",
     "3": "オフライン",
-    "4": "稼働中"
+    "4": "オフライン"
    }
   },
   "30b03e5702eb6f69": {
@@ -429,7 +501,7 @@
    "n": "VZA1wgxFEynnYKh0tSUsqWtSKXUFYa89lMb7RE9sVGUvPZ6JFr3WwheBCvOfOdbCxu/y8pMvfxlxZ3+Vq6yQW44eDxOQATFrZa2IBBaWWuKur9ZtuVmA9fZFVAmMEA==",
    "q": "3b2f29ed21a45173",
    "s": {
-    "1": "稼働中",
+    "1": "オフライン",
     "2": "オフライン",
     "3": "オフライン"
    }
@@ -499,7 +571,7 @@
    "n": "1FLYalogB7Cy/BvhQH+QNlnHqwXGUw4+igmuO0uxSxOs1+iYrcHZqPAz15g3b3qNgkQnSj1sFPNh9hiumccph0HemJ+5eHE=",
    "q": "573e4cc571566eae",
    "s": {
-    "1": "稼働中",
+    "1": "オフライン",
     "2": "オフライン"
    }
   },
@@ -550,7 +622,7 @@
    "n": "d81XIbDNCHYxda6y0cs6yleraYWZCfVUiYbOhQpIvbigiUtLFMXpXVo0ARmBY5xiJoBN7+qYl6NqnrT31suoypOxR0WSjQ5x06C+0179fW4hPU+1CpacPfNqyT/QBm0pwDgyXglcvpTc66JV4bmEJAKH4N7ovSexqZzVaEEygmUPulLiO/CMVdOCaM1J/6qSRu7nBpIE76c=",
    "q": "3b2f29ed21a45173",
    "s": {
-    "1": "稼働中",
+    "1": "オフライン",
     "2": "オフライン"
    }
   },
@@ -566,7 +638,7 @@
    "n": "RTyx55JXUFfV6AIWrw+IIkHYJP+EQeDzJdbWZaedwO70fXRPXwhMp5Tcg/oet8zUB3H33kV4FrFFe4lBE2nzt41pcrsurNnSOOGfu7+foQo8SD80/Vrfo0VnrLm5P4Qi",
    "q": "cd660c6c67abe605",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "ead0688295b2933b": {
@@ -581,7 +653,7 @@
    "n": "xsYuyyS0WQBNEiFqy0YKHAmGVk1fznP1kIT4dScikbseg6gPx0XA/xwBriDxHMtk9wTFnN79Y4q5vhhbdfHuGcjPZl3Y95Ad4dH7BTRSfosxLVp0sVXTpiminjWjEia3de2cGrnRSTRSedhOQbV2v8fxfoSdq+BtWZh5SB2EQnRhTGzNQCU=",
    "q": "0c2ffad614ce9fe8",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "f7e4190e4845b1aa": {
