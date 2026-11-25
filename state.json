@@ -5,7 +5,17 @@
  "fail_since": "",
  "no_time": "2026-11-25 14:00",
  "pending": [],
- "pending_all": [],
+ "pending_all": [
+  [
+   "2026-11-25 22:00",
+   "30b03e5702eb6f69",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ]
+ ],
  "queries": [
   "277bd131f15abc71",
   "80eef005f12067ba",
@@ -136,7 +146,7 @@
    "n": "RtSMK7Mz5/McamD5RxyXaiOY/JdbR7auXudg8Wyq/b95EkLxkPsM0qV/j+KDXtq7uK+qKgjOmwS4R73jnzz4Ju5ONJZGryDrOLhVrk5UeQsqn3AwEbZwp20=",
    "q": "77599115702c3ced",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "3a7e2dcab9ee9fa8": {
