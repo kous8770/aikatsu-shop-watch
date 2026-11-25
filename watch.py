@@ -222,13 +222,13 @@ def write_history(rows):
         w.writerows(rows)
 
 
-def send(content):
+def send(content, env="DISCORD_WEBHOOK_URL"):
     if DRY_RUN:
-        log("---- Discord に送る内容 ----\n" + content)
+        log(f"---- Discord（{env}）に送る内容 ----\n" + content)
         return
-    url = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
+    url = os.environ.get(env, "").strip()
     if not url:
-        raise RuntimeError("DISCORD_WEBHOOK_URL が設定されていません")
+        raise RuntimeError(f"{env} が設定されていません")
     body = json.dumps({"content": content[:1990], "allowed_mentions": {"parse": []}}).encode("utf-8")
     for i in range(3):
         req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json", "User-Agent": UA})
@@ -243,7 +243,7 @@ def send(content):
     raise RuntimeError("Discord への送信に失敗しました（混雑）")
 
 
-def send_chunks(header, lines, footer):
+def send_chunks(header, lines, footer, env="DISCORD_WEBHOOK_URL"):
     """見出し＋本文の行＋断り書きを、2000 文字以内に分けて送る。"""
     chunks, cur = [], header
     for line in lines:
@@ -253,9 +253,40 @@ def send_chunks(header, lines, footer):
         cur += "\n" + line
     chunks.append(cur + ("\n" + footer if footer else ""))
     for c in chunks:
-        send(c)
+        send(c, env)
         time.sleep(1)
     return len(chunks)
+
+
+# すべての更新を送る 2 つ目のチャンネル（DISCORD_WEBHOOK_URL_ALL）に載せる記録の種類と印
+LOG_MARKS = {"更新": "・", "更新・通知": "🟢", "復活・通知": "🔁", "新規・通知": "🆕", "台が増えた・通知": "➕", "台が戻った・通知": "🔁"}
+
+
+def describe_log(rows, names):
+    """history の行（店名なし）から、2 つ目のチャンネル用の行を店ごとに作る。"""
+    by_store = {}
+    for r in rows:
+        by_store.setdefault(r[1], []).append(r)
+    lines = []
+    for k, rs in by_store.items():
+        mark = next((LOG_MARKS[r[6]] for r in rs if LOG_MARKS[r[6]] != "・"), "・")
+        parts = []
+        for r in rs:
+            _, _, no, before, after, gap, kind = r
+            who = f"{no}台目" if no else "全台"
+            g = "" if gap == "" else f"、{gap_text(float(gap))}"
+            if kind == "新規・通知":
+                parts.append(f"新規掲載 {short_time(after)}")
+            elif kind == "台が増えた・通知":
+                parts.append(f"{who} 増えた {short_time(after)}")
+            elif kind == "復活・通知":
+                parts.append(f"復活 {short_time(before)} → {short_time(after)}{g}")
+            elif kind == "台が戻った・通知":
+                parts.append(f"{who} 戻った {short_time(before)} → {short_time(after)}{g}")
+            else:
+                parts.append(f"{who} {short_time(before)} → {short_time(after)}{g}")
+        lines.append(f"{mark} **{names.get(k, '（店名不明）')}**（{'／'.join(parts)}）")
+    return lines
 
 
 # ---------- 状態 ----------
@@ -435,6 +466,24 @@ def main():
             header = f"**公式更新ウォッチ（{now.strftime('%H:%M')}時点）**" + ("　※夜の間の分も含みます" if held else "")
             footer = DISCLAIMER if any(ev["kind"] not in ("fail", "recovered") for ev in held + events) else ""
             sent += send_chunks(header, lines, footer)
+    # 2 つ目のチャンネル：36 時間以内も含むすべての最終更新の変化（設定されているときだけ）
+    if os.environ.get("DISCORD_WEBHOOK_URL_ALL", "").strip() or (DRY_RUN and os.environ.get("DRY_RUN_ALL") == "1"):
+        log_rows = [r for r in history if r[6] in LOG_MARKS]
+        if not state.get("all_started"):
+            send("**このチャンネルの使い方**\n見張っている店の最終更新の変化を、36 時間以内の更新も含めてすべて送ります。"
+                 "🟢 36 時間以上ぶり、🔁 復活・戻った、🆕 新規、➕ 台が増えた、・ ふつうの更新。夜 22 時〜8 時の分は朝にまとめて送ります。",
+                 "DISCORD_WEBHOOK_URL_ALL")
+            state["all_started"] = checked_at
+            sent += 1
+        if quiet:
+            state.setdefault("pending_all", []).extend(log_rows)
+        else:
+            held_all = state.get("pending_all", [])
+            state["pending_all"] = []
+            lines = describe_log(held_all + log_rows, names)
+            if lines:
+                header = f"**公式更新ログ（{now.strftime('%H:%M')}時点）**" + ("　※夜の間の分も含みます" if held_all else "")
+                sent += send_chunks(header, lines, "", "DISCORD_WEBHOOK_URL_ALL")
     # 見張りを加えたときと動作確認は、夜でもすぐ送る（手で操作したときなので）
     if info_lines:
         sent += send_chunks("**見張りの設定**", info_lines, "")

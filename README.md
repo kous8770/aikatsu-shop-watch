@@ -26,7 +26,8 @@ GitHub Actions で 10 分おきに動きます（GitHub の都合で数分〜20 
 ## 設定（GitHub の Settings → Secrets and variables → Actions → Secrets）
 | 名前 | 中身 |
 |---|---|
-| `DISCORD_WEBHOOK_URL` | Discord のウェブフックの URL |
+| `DISCORD_WEBHOOK_URL` | Discord のウェブフックの URL（大事な通知：🟢 36 時間以上ぶり、🔁 復活、🆕 新規など） |
+| `DISCORD_WEBHOOK_URL_ALL` | 2 つ目のチャンネルのウェブフックの URL（36 時間以内も含むすべての最終更新の変化。「公式更新ログ」）。なければ送らない |
 | `STORES` | 見張る店名や地名。1 行に 1 つ。公式サイトの検索欄と同じで、店名や住所の一部でも探せる（完全に同じ名前の店があればその店だけ）。「愛知県小牧市」のように県名で始めると、その県だけで探す（苫小牧市などを除ける） |
 
 店名は Secrets に入れるので、公開リポジトリのログには出ません。`state.json` と `history.csv` にも店名は書かず、ハッシュだけを書きます。
