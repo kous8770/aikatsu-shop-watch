@@ -14,6 +14,24 @@
    "オフライン",
    "",
    "状態が変わった"
+  ],
+  [
+   "2026-11-25 22:20",
+   "44626375397636ac",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-25 22:20",
+   "f7e4190e4845b1aa",
+   "1",
+   "稼働中",
+   "カード切れ停止中",
+   "",
+   "状態が変わった"
   ]
  ],
  "queries": [
@@ -197,7 +215,7 @@
    "n": "VE/D5xc2o0tykC1nxDlb2Z+lNd3AhO3Gehd6wY13TTO3X/dgL2iYbM+Gl9b3pD/LGPH9NPJ80c475hv7eRJeMZGuHQmnvCoyKtVorBu8xXNez1Rj+O4VzAA=",
    "q": "277bd131f15abc71",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "51f0dc4bad07f7a2": {
@@ -426,7 +444,7 @@
    "n": "QV8d0+DHFWLHdA3hGeIESlvZlquH7Ngutl89KzjIIBO68AGXh66jIrLaPgs96z4jMjnE0/P5qEGfMLm6knMSF7IkfHtkS6S00QoEB7lI4D/S20DTSfBhw2iwuAjskeaoHqsyWkqxFCyO11hOESA=",
    "q": "cd660c6c67abe605",
    "s": {
-    "1": "稼働中"
+    "1": "カード切れ停止中"
    }
   },
   "fbdc4d0809bba5d8": {
