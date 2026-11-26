@@ -21,7 +21,7 @@
    "n": "0ZJ5ShKCD4qaTDXQ0OVjnuuzVu+UAdRGwOE3ANugdJicxO89KZQFgcVQGKst0PJ1K2t/EzQPzc0/qqVhOH7O6OjJLmm7yB59HUXr7Ab5Rq79MxskwkCwYINtIinoIUYqKPLxi2Y4Pw==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
+    "1": "オフライン",
     "2": "オフライン"
    }
   },
@@ -109,7 +109,7 @@
    "n": "Et7XQJKkErVOOoCAht4scDlQzS4iFOw3Dj6BhG3H5XexNSueODYOP/q4bFcz3XfsMeJD1GLHJ9f++XcfVbdcNvsFNG6wAhqE0MgYQiAmGuQVJFcd6KUyFYzgHkb/FYy9KNo0IBD997aFsIM=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "30b03e5702eb6f69": {
@@ -133,7 +133,7 @@
    "n": "Re6LKPhq5MXzw+RYjnafo0+I/1jyJ5Jnip/WUSuJVh+SRQWUSlDBikKgj4MyYGUws2txRy/s42o+DSonWw4+LyBAkgqz010Pbc200kVloIWC9tr3Z/rgyrLxD+Jvm0Kg/yOP7oV/m/mTEKdUVA==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "363aff25b3f1e0f6": {
@@ -191,7 +191,7 @@
    "n": "Z5hOjve6/8oDEapIxMbFvGLVf5Cpe15X9IM7fKyNEx+rlbGvOgwUrFBlM2jPy5cEC5brWp/3tReG6K9zAiEwrOy28xXtb9ch0DKS2rNUr6xY/SuKROTT5kbq89tdBXhJ65PXO7E7uaVMcVA=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "4d5ebac3bc1d5c31": {
@@ -281,8 +281,8 @@
    "n": "kgksEORAUiIBQVn+RNkMqJaPbELG/fVZQN7j69pzYyrqw2qEPXgcFT5luBFbrEhr2O3116lwP179B6bVrqWLWxB+uz2Up86ZOId6IXF6FlpnlwxCQeB/Q1KIYd3Oj44IP2g/kTFPGzX8eplAafTwLkDiY5wM",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "660547efb8aae520": {
@@ -365,8 +365,8 @@
    "n": "N4y5eQyNxb3U1osU3HOtYZDE85mHfg8hcwoA34Z/tOI0SFRY9/KW6EUi0cfd+Umk4CpieGwipFw9nqv/63utFHHpEPT9JbtRuqxS7fmv+g==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "8151ddfbc058bf90": {
@@ -374,9 +374,9 @@
    "n": "VZA1wgxFEynnYKh0tSUsqWtSKXUFYa89lMb7RE9sVGUvPZ6JFr3WwheBCvOfOdbCxu/y8pMvfxlxZ3+Vq6yQW44eDxOQATFrZa2IBBaWWuKur9ZtuVmA9fZFVAmMEA==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中",
-    "3": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン",
+    "3": "オフライン"
    }
   },
   "820a08bea8821bc4": {
@@ -483,9 +483,9 @@
    "n": "/M6VC0hED1KihOVK2+XgwgipeRxbztNmMD6z/8BYBoGTwrcmrU54uPEzHe0eRgHzQi/eoTMoZbYp6ZLO81qy+fTgblM3qpm95mngN5X7Vr4RwGlnCWP+qYziLBOWVLFzFjLAZKrwhdY+cWFShjeRrVhFSok=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中",
-    "3": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン",
+    "3": "オフライン"
    }
   },
   "9bd719a80c2d8165": {
@@ -503,7 +503,7 @@
    "n": "xAl2N5qoDpScFuwN/JG70wsRAlx2qS9nRWnoA1OoQRQ91E1Qa3YORb+5oaiFfvS120hiCfkk4WeLnJgmyag9izgEeqFqOOSomOTANDv+bySyc1yEqBlZ9L7WbrmbuT8HWnGeDxQuww==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "a036d3550f03d502": {
@@ -552,8 +552,8 @@
    "n": "1FLYalogB7Cy/BvhQH+QNlnHqwXGUw4+igmuO0uxSxOs1+iYrcHZqPAz15g3b3qNgkQnSj1sFPNh9hiumccph0HemJ+5eHE=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "afc67d7265417ff0": {
@@ -596,8 +596,8 @@
    "n": "QnU48y1SK18Yk0S/EA3ZmqSmsTLV1s6+jm1AAtXV1J30u3bcUfzDxKPu0Z2Cjj5kbcaxY/VrxIjq3VYcTuPx5VirNoOGN5WxVZ4bobA657HnU+jcpzbn8ZGqI/pGoeTffU4=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "b4f29e39a5243d5a": {
@@ -613,8 +613,8 @@
    "n": "KrZpO8nMQRiMgwnCYUor6FzDdo9XOpL1bhjlPE3k4qHJfAYqMy/wV8yrPBMu+IoK4Qbb21XJgITmMUhWhAOzlAfT0YxWgy/z0D9sC311tD4WQP3kuTYL0as=",
    "p": "岐阜県",
    "s": {
-    "1": "稼働中",
-    "2": "カード切れ停止中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "ba38aabac68aad91": {
@@ -674,7 +674,7 @@
    "n": "zreK2n9pRzr/ibWVN9FjzriRGKPNldYWxEVtfi6utgs6R0IgCMtIifd7k7XH4J5WQkuLqilAX4SIs/rrIGXZdGtBIBE4vqlgiO385Nro49k=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "c87b516f0a194b0f": {
@@ -784,7 +784,7 @@
    "n": "RTyx55JXUFfV6AIWrw+IIkHYJP+EQeDzJdbWZaedwO70fXRPXwhMp5Tcg/oet8zUB3H33kV4FrFFe4lBE2nzt41pcrsurNnSOOGfu7+foQo8SD80/Vrfo0VnrLm5P4Qi",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "e6d9e0751dce50da": {
@@ -792,7 +792,7 @@
    "n": "ZKzfLv6sBpRzZ0wg7cdp/NEL4nbEvs2YafZNJD59+C7FANlmPuy+uyEeAJdih4lVmgtYnWONwYDudpnlPCG2DBj93Oeke+jZ+/OxJxZP+1KKq6NxVYtW8TiVJBZHNbB8",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "e79e7e799851de2e": {
@@ -826,7 +826,7 @@
    "n": "xsYuyyS0WQBNEiFqy0YKHAmGVk1fznP1kIT4dScikbseg6gPx0XA/xwBriDxHMtk9wTFnN79Y4q5vhhbdfHuGcjPZl3Y95Ad4dH7BTRSfosxLVp0sVXTpiminjWjEia3de2cGrnRSTRSedhOQbV2v8fxfoSdq+BtWZh5SB2EQnRhTGzNQCU=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "f7e4190e4845b1aa": {
@@ -842,10 +842,10 @@
    "n": "jj1Qd2Z//DYELN80EQ/hdOjrl3nzbnJrPZMlDq7cn1ndsMvnxOOcmt/xfMlpdXon+p25F39qjOn+OBB7lX4XdwQsQFSc6A==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中",
-    "3": "稼働中",
-    "4": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン",
+    "3": "オフライン",
+    "4": "オフライン"
    }
   },
   "fbdc4d0809bba5d8": {
@@ -869,11 +869,11 @@
    "n": "3Yhiq1O0z1aTgSPM0RTIQ9+oK5m5V1EoLI1BWNVIz3QTA9FBr8WKj90Yl8OFMYFaDCs/rdhodngdqPREzwNsATuVWE8/6O6e2NDeOYn4uGFghSy19ATmMBorubCauHOq/VGSyS6QDtTvz/+jR+9u71d9QBO4Xva1SF+XqjIZzc76",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   }
  },
- "all_checked_at": "2026-11-27 04:50",
+ "all_checked_at": "2026-11-27 05:00",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1101,6 +1101,69 @@
    "",
    "",
    "一覧から消えた"
+  ],
+  [
+   "2026-11-27 05:00",
+   "ab2a59ff205cbda4",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-27 05:00",
+   "ab2a59ff205cbda4",
+   "2",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-27 05:00",
+   "e196d1f51636f89c",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-27 05:00",
+   "8151ddfbc058bf90",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-27 05:00",
+   "8151ddfbc058bf90",
+   "2",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-27 05:00",
+   "8151ddfbc058bf90",
+   "3",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-27 05:00",
+   "ead0688295b2933b",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
   ]
  ],
  "queries": [
@@ -1362,9 +1425,9 @@
    "n": "VZA1wgxFEynnYKh0tSUsqWtSKXUFYa89lMb7RE9sVGUvPZ6JFr3WwheBCvOfOdbCxu/y8pMvfxlxZ3+Vq6yQW44eDxOQATFrZa2IBBaWWuKur9ZtuVmA9fZFVAmMEA==",
    "q": "3b2f29ed21a45173",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中",
-    "3": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン",
+    "3": "オフライン"
    }
   },
   "91d338142183a9c1": {
@@ -1437,8 +1500,8 @@
    "n": "1FLYalogB7Cy/BvhQH+QNlnHqwXGUw4+igmuO0uxSxOs1+iYrcHZqPAz15g3b3qNgkQnSj1sFPNh9hiumccph0HemJ+5eHE=",
    "q": "573e4cc571566eae",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "c106be75e52ed8e7": {
@@ -1509,7 +1572,7 @@
    "n": "RTyx55JXUFfV6AIWrw+IIkHYJP+EQeDzJdbWZaedwO70fXRPXwhMp5Tcg/oet8zUB3H33kV4FrFFe4lBE2nzt41pcrsurNnSOOGfu7+foQo8SD80/Vrfo0VnrLm5P4Qi",
    "q": "cd660c6c67abe605",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "ead0688295b2933b": {
@@ -1524,7 +1587,7 @@
    "n": "xsYuyyS0WQBNEiFqy0YKHAmGVk1fznP1kIT4dScikbseg6gPx0XA/xwBriDxHMtk9wTFnN79Y4q5vhhbdfHuGcjPZl3Y95Ad4dH7BTRSfosxLVp0sVXTpiminjWjEia3de2cGrnRSTRSedhOQbV2v8fxfoSdq+BtWZh5SB2EQnRhTGzNQCU=",
    "q": "0c2ffad614ce9fe8",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "f7e4190e4845b1aa": {
