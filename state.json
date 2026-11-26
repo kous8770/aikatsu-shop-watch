@@ -168,8 +168,7 @@
    "n": "9LD/wBCePIwhxSk8m9UAl51UmYoZZnxbPbjStGDNNOGE5UCl8A9V3kdBtCTrS7vhWuORmVr62Kwepl2unUeo",
    "p": "岐阜県",
    "s": {
-    "1": "オフライン",
-    "2": "オフライン"
+    "1": "オフライン"
    }
   },
   "3b3fc1ad6e3385a8": {
@@ -834,7 +833,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 10:40",
+ "all_checked_at": "2026-11-26 10:50",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -998,10 +997,12 @@
     "1": "１弾・１弾",
     "2": "１弾・１弾"
    },
+   "gone_m": {
+    "2": "2026-11-23 09:43:05"
+   },
    "listed": true,
    "m": {
-    "1": "2026-11-25 09:43:25",
-    "2": "2026-11-23 09:43:05"
+    "1": "2026-11-25 09:43:25"
    },
    "miss": 0,
    "n": "9LD/wBCePIwhxSk8m9UAl51UmYoZZnxbPbjStGDNNOGE5UCl8A9V3kdBtCTrS7vhWuORmVr62Kwepl2unUeo",
