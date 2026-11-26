@@ -390,7 +390,7 @@
    "n": "dixUhP5iAJ5fdMIJm+6hiilX8i0gKV7IFfHCbwNsCaIlENLfj0wtOOom/+Xz8OAL6YPB6MZYth7LXC1icKOtcV0uJwMgqH8v/EC0rYCPboc4NGA=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "8bffe5fb4c72a344": {
@@ -836,7 +836,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 20:40",
+ "all_checked_at": "2026-11-26 20:50",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
