@@ -487,8 +487,7 @@
    "p": "愛知県",
    "s": {
     "1": "オフライン",
-    "2": "オフライン",
-    "3": "オフライン"
+    "2": "オフライン"
    }
   },
   "9f97b61a87990e4d": {
@@ -841,7 +840,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 15:50",
+ "all_checked_at": "2026-11-26 16:00",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1141,11 +1140,13 @@
     "2": "１弾・１弾",
     "3": "１弾・１弾"
    },
+   "gone_m": {
+    "3": "2026-11-23 16:23:03"
+   },
    "listed": true,
    "m": {
     "1": "2026-11-23 10:03:31",
-    "2": "2026-11-23 10:03:21",
-    "3": "2026-11-23 16:23:03"
+    "2": "2026-11-23 10:03:21"
    },
    "miss": 0,
    "n": "+/oBU9m48Eisob532WaA6oPGg65KUcMGIkHNwlngEOzXTAxU44HhqR2/Ob2Cqk1YRFDjKm+Sex+yaekU2pyuAoMYG4XOmfAcr0RbFDrSuKS0HnahIq6DVn4EIa1tkSKIqq3dGHoi48B+xcoxLso4nY8R52Dx05oartTka8mpug==",
