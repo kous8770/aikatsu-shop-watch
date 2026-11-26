@@ -72,7 +72,7 @@
    "n": "TNuzpzEx+Xy/GJDjnu1jd/fKu3gXtP/H0z4ut5+/ABHcqwGsavVGuDXTtwqhoRMJP+yHyALCPIspZ5ZYVjH1NpvsCYbXezwmbSKlh5l534vwmepAJFqT8VILRyRncif4UOBnmyiWXzFbfCCO2sW/eg==",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中",
+    "1": "稼働中",
     "2": "オフライン"
    }
   },
@@ -182,7 +182,7 @@
    "n": "VE/D5xc2o0tykC1nxDlb2Z+lNd3AhO3Gehd6wY13TTO3X/dgL2iYbM+Gl9b3pD/LGPH9NPJ80c475hv7eRJeMZGuHQmnvCoyKtVorBu8xXNez1Rj+O4VzAA=",
    "p": "岐阜県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "オフライン"
    }
   },
   "4c046f1a21d20d1f": {
@@ -217,6 +217,15 @@
     "1": "カード切れ停止中"
    }
   },
+  "51f0dc4bad07f7a2": {
+   "listed": true,
+   "n": "6h7Oc7DCarp49lAaNKscwelesrfxjNkE7622kNFgaUhLOf7LQKOGeLLdKWRFJ5QB+kJVEpA7ISW4DV9mfCnmGqU=",
+   "p": "岐阜県",
+   "s": {
+    "1": "オフライン",
+    "2": "オフライン"
+   }
+  },
   "52c4813520946b1a": {
    "listed": true,
    "n": "zTFCLJTS6Ne5BSx3ayFjEpd7Lhf0tyw6wEEcPrKhlmmCxovU9L/egqVcgUvxq3+5UjGQO/rBNaNs6qZTOA+YrRtA",
@@ -238,7 +247,7 @@
    "n": "DX2/YiUppuENyj9KxNByhjEZib2vNNUYnmnVYRUyzLJ8tXVzCC0WJcQP8jZCObYCBGk2HVTvf1QdARNWjwEFJREB/Gyd6Tnr/Nvc1LBm5qKYl6lhtE6bFFg=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "5aacc756aa9869b1": {
@@ -280,7 +289,7 @@
    "n": "JpOoExCAlEnMA7MaKMd8+s/SU6WaqF11lLs1bc5g+0g5Dt6h6JwQLmJxE/r8sWyEGNkqU+bfFlhEkHNuIUSTKwhD0MMr8ajgSnlO82OUV5TnUY4=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "66e252043713d792": {
@@ -304,8 +313,8 @@
    "n": "RrdTZ0tHd44WdTJgJccQicpBujZh84EKiwvOYAvFif4J+aquaa1S8KE7tUgDFc08UNZ0l5aMVQ0Z6n/mMn+rX71ekavc5Wo+oqbYukHF0zUWW/PdQ8zQAslEGN0dwtoePG3JjUnYvto98RMx25JzlAgdWT6J3y5Kdw==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "723810e7a810ca71": {
@@ -347,7 +356,7 @@
    "n": "e946bMJN2Op6S8a3nuAnsQ6izLJfAXy7nqpSRA2jf6zDVLp7QuW5z1AYs4NhiSZNTRGIFZ15Pv4mJMMNy0KDE4xJ4lsncCZbdEM+jaIOWy1OE1qCQ2sGC/GuT/DDHwBkM8WhaBWuYdJ7tR8piGHUzGcOds3Vl43UX3KTerLuJmNVzKVzYd0=",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "オフライン"
    }
   },
   "7dedb5461944cf3e": {
@@ -464,8 +473,8 @@
    "n": "4P6TvHjdM2es+35N8HPBRIuPRIuHwNCAx/pGqxnkG77JQhqLge6no2fumdqdy8P0gfcAEJDKCl38gPfxS0Nv5w2ytnqNwBClK3RhY994JWkE5z1Os/ddAhE3",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "カード切れ停止中",
+    "2": "カード切れ停止中"
    }
   },
   "97e7bba2fdbbfad1": {
@@ -593,7 +602,7 @@
    "n": "XcCyyF0zbY2NkVX4elgqP2yTCdc3a+A5cF4HaFZB03ofjw9Pws2/R5+1/a/gwYsYvoyl/58H15T/l4FZ56RxEKTBneUQzp5I7fv+Dto0fI+CFV7J3Yk=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "b53f078a70859a18": {
@@ -779,7 +788,7 @@
    "n": "HjZjDNYiJbmDlGgHPUgPvbVWrpO+pko8AZN+whGNCE/YbHDEvyC3kQo2QBxvY5Obmp0om4T4RPoT5uuPy7XO52jXoIx5zbC2W6i1HQywYLDZhk9pMnU8x7tngQo9WaCOdjAE",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "稼働中"
    }
   },
   "e9481aff494e620c": {
@@ -842,14 +851,33 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 22:10",
+ "all_checked_at": "2026-11-26 22:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
  "fail_since": "",
  "no_time": "2026-11-25 14:00",
  "pending": [],
- "pending_all": [],
+ "pending_all": [
+  [
+   "2026-11-26 22:20",
+   "44626375397636ac",
+   "1",
+   "カード切れ停止中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 22:20",
+   "51f0dc4bad07f7a2",
+   "",
+   "2026-11-22 09:43:26",
+   "",
+   "",
+   "一覧に戻った（稼働中なし）"
+  ]
+ ],
  "queries": [
   "277bd131f15abc71",
   "80eef005f12067ba",
@@ -1036,23 +1064,26 @@
    "n": "VE/D5xc2o0tykC1nxDlb2Z+lNd3AhO3Gehd6wY13TTO3X/dgL2iYbM+Gl9b3pD/LGPH9NPJ80c475hv7eRJeMZGuHQmnvCoyKtVorBu8xXNez1Rj+O4VzAA=",
    "q": "277bd131f15abc71",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "オフライン"
    }
   },
   "51f0dc4bad07f7a2": {
    "c": {},
-   "gone_at": "2026-11-26 00:50",
-   "listed": false,
+   "listed": true,
    "m": {
     "1": "2026-11-22 09:43:25",
     "2": "2026-11-22 09:43:26"
    },
-   "miss": 3,
+   "miss": 0,
    "n": "6h7Oc7DCarp49lAaNKscwelesrfxjNkE7622kNFgaUhLOf7LQKOGeLLdKWRFJ5QB+kJVEpA7ISW4DV9mfCnmGqU=",
    "q": "085cc47680a3b8d8",
    "s": {
     "1": "オフライン",
     "2": "オフライン"
+   },
+   "wait_run": {
+    "before": "2026-11-22 09:43:26",
+    "since": "2026-11-26 22:20"
    }
   },
   "723810e7a810ca71": {
