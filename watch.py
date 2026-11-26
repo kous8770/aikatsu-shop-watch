@@ -45,6 +45,8 @@ DRY_RUN = os.environ.get("DRY_RUN") == "1"
 NOTIFY_TEST = os.environ.get("NOTIFY_TEST") == "1"
 STATE_FILE = os.environ.get("STATE_FILE", "state.json")
 HISTORY_FILE = os.environ.get("HISTORY_FILE", "history.csv")
+STATUS_LOG_FILE = os.environ.get("STATUS_LOG_FILE", "status_log.csv")
+STATUS_LOG_PREFS = [x.strip() for x in os.environ.get("STATUS_LOG_PREFS", "愛知県,岐阜県").split(",") if x.strip()]
 MIN_GAP_HOURS = float(os.environ.get("MIN_GAP_HOURS") or 36)
 QUIET_START = int(os.environ.get("QUIET_START") or 22)
 QUIET_END = int(os.environ.get("QUIET_END") or 8)
@@ -271,6 +273,65 @@ def write_history(rows):
         if new:
             w.writerow(["記録した時刻", "店（ハッシュ）", "台", "前回の更新", "今回の更新", "間隔（時間）", "種類（・通知＝知らせた）"])
         w.writerows(rows)
+
+
+def write_status_log(rows):
+    if not rows:
+        return
+    new = not os.path.exists(STATUS_LOG_FILE)
+    with open(STATUS_LOG_FILE, "a", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        if new:
+            w.writerow(["確認した時刻", "前回の確認", "県", "店（ハッシュ）", "台", "前の状態", "今の状態", "排出カード", "見張り中"])
+        w.writerows(rows)
+
+
+def log_all_status(state, checked_at, watched):
+    """愛知・岐阜の全店・全台の状態（稼働中／オフライン／カード切れ停止中など）の変わり目を status_log.csv に残す。
+    後で開店・閉店の時刻やカード切れの長さを調べるため。通知はしない。読めなかった県は飛ばす（消えたことにしない）。"""
+    all_st = state.setdefault("all", {})
+    prev_check = state.get("all_checked_at", "")
+    first = not all_st
+    rows = []
+    for pref_name in STATUS_LOG_PREFS:
+        try:
+            stores = search(pref_name)
+        except RuntimeError as e:
+            log(f"状態の記録：{pref_name} を読めませんでした（{e}）")
+            continue
+        seen = set()
+        for s in stores:
+            k = key_of(s)
+            seen.add(k)
+            now_s = {m["no"]: (m.get("status") or "表示なし") for m in s["machines"]}
+            now_c = cards_of(s)
+            mark = "○" if k in watched else ""
+            old = all_st.get(k)
+
+            def row(no, before, after):
+                rows.append([checked_at, prev_check, pref_name, k, no, before, after, now_c.get(no, ""), mark])
+
+            if old is None or not old.get("listed", True):
+                for no, x in now_s.items():
+                    row(no, "（初回）" if first else "（一覧に出た）", x)
+            else:
+                for no, x in now_s.items():
+                    b = old["s"].get(no)
+                    if b is None:
+                        row(no, "（台が出た）", x)
+                    elif b != x:
+                        row(no, b, x)
+                for no, b in old["s"].items():
+                    if no not in now_s:
+                        row(no, b, "（台が消えた）")
+            all_st[k] = {"s": now_s, "p": pref_name, "listed": True, "n": enc_name(k, s)}
+        for k, v in all_st.items():
+            if v.get("p") == pref_name and v.get("listed", True) and k not in seen:
+                for no, b in v["s"].items():
+                    rows.append([checked_at, prev_check, pref_name, k, no, b, "（一覧から消えた）", "", "○" if k in watched else ""])
+                v["listed"] = False
+    state["all_checked_at"] = checked_at
+    return rows
 
 
 def send(content, env="DISCORD_WEBHOOK_URL"):
@@ -549,6 +610,10 @@ def main():
         if qk not in state["queries"]:
             state["queries"].append(qk)
 
+    # 愛知・岐阜の全台の状態の変わり目を記録（通知はしない）
+    status_rows = log_all_status(state, checked_at, set(st)) if STATUS_LOG_PREFS else []
+    log(f"状態の記録 {len(status_rows)} 行")
+
     # 公式サイトで最終更新の時刻が表示されなくなった／戻ったら、1 回だけ知らせる
     if not errors and seen_machines:
         no_time_now = timeless == seen_machines
@@ -623,6 +688,7 @@ def main():
 
     # 送れたあとで記録と状態を保存する（送信に失敗したら、次の回にもう一度判定して送る）
     write_history(history)
+    write_status_log(status_rows)
     save_state(state)
     return 0
 

@@ -3,3 +3,4 @@ __pycache__/
 test_state.json
 test_state.json
 test_history.csv
+test_status_log.csv
