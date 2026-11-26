@@ -73,7 +73,7 @@
    "n": "TNuzpzEx+Xy/GJDjnu1jd/fKu3gXtP/H0z4ut5+/ABHcqwGsavVGuDXTtwqhoRMJP+yHyALCPIspZ5ZYVjH1NpvsCYbXezwmbSKlh5l534vwmepAJFqT8VILRyRncif4UOBnmyiWXzFbfCCO2sW/eg==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
+    "1": "カード切れ停止中",
     "2": "カード切れ停止中"
    }
   },
@@ -837,7 +837,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 19:50",
+ "all_checked_at": "2026-11-26 20:00",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
