@@ -231,6 +231,10 @@ def describe(ev, names):
         parts = [f"{m['no']}台目：{short_time(m['before'])} → {short_time(m['after'])}、{gap_text(m['gap'])}" for m in ev["machines"]]
         return f"🟢 **{name}**（{'／'.join(parts)}）"
     if kind == "revived":
+        if ev.get("running") is not None and all(not m["after"] for m in ev["machines"]):
+            when = "一覧に戻ったあと、稼働中になりました" if ev.get("late") else "稼働中の台あり"
+            nos = "・".join(f"{no}台目" for no in ev["running"])
+            return f"🔁 **{name}** 台データ復活（{when}：{nos}。前回の最終更新 {short_time(ev['before'])}）"
         if all(not m["after"] for m in ev["machines"]):
             return f"🔁 **{name}** 台データ復活（{len(ev['machines'])}台。前回の最終更新 {short_time(ev['before'])}。今は公式に時刻の表示なし）"
         parts = [f"{m['no']}台目：{short_time(m['after'])}" for m in ev["machines"]]
@@ -373,7 +377,7 @@ def send_chunks(header, lines, footer, env="DISCORD_WEBHOOK_URL"):
 # すべての更新を送る 2 つ目のチャンネル（DISCORD_WEBHOOK_URL_ALL）に載せる記録の種類と印
 LOG_MARKS = {"更新": "・", "更新・通知": "🟢", "復活・通知": "🔁", "新規・通知": "🆕", "台が増えた・通知": "➕", "台が戻った・通知": "🔁",
              "弾が変わった・通知": "🆙", "台が戻った（時刻なし）": "↩️", "台が消えた": "➖", "一覧から消えた": "➖",
-             "カード切れ→稼働・通知": "✨", "状態が変わった": "🔸"}
+             "カード切れ→稼働・通知": "✨", "状態が変わった": "🔸", "一覧に戻った（稼働中なし）": "↩️"}
 
 
 def describe_log(rows, names):
@@ -383,7 +387,8 @@ def describe_log(rows, names):
         by_store.setdefault(r[1], []).append(r)
     lines = []
     for k, rs in by_store.items():
-        mark = next((LOG_MARKS[r[6]] for r in rs if LOG_MARKS[r[6]] != "・"), "・")
+        order = "🔁🆕✨🆙➕🟢↩️➖🔸・"
+        mark = min((LOG_MARKS[r[6]] for r in rs), key=lambda m: order.find(m) if m in order else 99)
         parts = []
         for r in rs:
             _, _, no, before, after, gap, kind = r
@@ -393,6 +398,8 @@ def describe_log(rows, names):
                 parts.append(f"新規掲載 {short_time(after)}")
             elif kind == "台が増えた・通知":
                 parts.append(f"{who} 増えた {short_time(after)}")
+            elif kind == "一覧に戻った（稼働中なし）":
+                parts.append("一覧に戻った（稼働中の台なし。稼働中になったら復活として知らせます）")
             elif kind == "復活・通知" and not after:
                 parts.append(f"復活（前回 {short_time(before)}。今は公式に時刻の表示なし）")
             elif kind == "復活・通知":
@@ -523,11 +530,17 @@ def main():
                 after = latest(now_m.values())
                 newer = [{"no": no, "after": t} for no, t in now_m.items() if t and t > prev_all.get(no, "")]
                 no_time_store = bool(raw_m) and all(not t for t in raw_m.values())
-                if not newer and no_time_store and old.get("gone_at"):
-                    # 公式サイトに時刻が出ていない間は、一覧に戻ったこと自体を復活として知らせる
+                running = [no for no, x in now_s.items() if x == "稼働中"]
+                status_known = any(now_s.values())
+                if not newer and no_time_store and old.get("gone_at") and (running or not status_known):
+                    # 公式サイトに時刻が出ていない間は、一覧に戻って稼働中の台があることを復活として知らせる
                     events.append({"kind": "revived", "k": k, "before": before, "gap": None,
-                                   "machines": [{"no": no, "after": ""} for no in raw_m]})
+                                   "machines": [{"no": no, "after": ""} for no in raw_m], "running": running})
                     history.append([checked_at, k, "", before, "", "", "復活・通知"])
+                elif not newer and no_time_store and old.get("gone_at"):
+                    # 戻ったが稼働中の台がない（夜中の表示の揺れなど）。更新ログだけにして、台が稼働中になったら復活として知らせる
+                    history.append([checked_at, k, "", before, "", "", "一覧に戻った（稼働中なし）"])
+                    keep["wait_run"] = {"since": checked_at, "before": before}
                 elif newer:
                     gap = gap_hours(before, after)
                     events.append({"kind": "revived", "k": k, "before": before, "gap": gap, "machines": newer})
@@ -595,6 +608,16 @@ def main():
                             history.append([checked_at, k, no, old_s[no], stt, "", "状態が変わった"])
             if restocked:
                 events.append({"kind": "restock", "k": k, "machines": restocked})
+            # 戻ったときに稼働中の台がなかった店：稼働中になったら、ここで復活として知らせる
+            wait = old.get("wait_run")
+            if wait:
+                running = [no for no, x in now_s.items() if x == "稼働中"]
+                if running:
+                    events.append({"kind": "revived", "k": k, "before": wait.get("before", ""), "gap": None,
+                                   "machines": [{"no": no, "after": ""} for no in running], "running": running, "late": True})
+                    history.append([checked_at, k, "", wait.get("before", ""), "", "", "復活・通知"])
+                else:
+                    keep["wait_run"] = wait
             st[k] = {"m": now_m, "listed": True, "miss": 0, "q": qk, **keep}
             if gone_m:
                 st[k]["gone_m"] = gone_m
