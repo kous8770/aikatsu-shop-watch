@@ -214,7 +214,7 @@
    "n": "uT8iQWkq+pvwdbj+1qo/mllwsbZpBGgHZ/wuDsslsPKlcmRBR7R9RGcth/uMAbrFPVXhSM5j73QfK7RIsftZyvbvjHsRIYuDzHe6dXaN9SagWYfufu1o",
    "p": "岐阜県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "オフライン"
    }
   },
   "51f0dc4bad07f7a2": {
@@ -255,7 +255,7 @@
    "n": "GN2q3OnGerwOIzmycFR6VSA1zKzYJqUesVOIozng372srIaj+HjHommtudeixb2eV88X4FXUafgv/hxekNsXWui+pnn7Ytld/6tOloXnS8JiZNJzNaPdAAcO+dn+3MPKRkc=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "5f7f4c3c3fde962a": {
@@ -347,8 +347,8 @@
    "n": "WuDFjC4AQ4OmQNZEZM9Iu0MjP6kTK94KMXwQSGvUm/CTeUs3mL1zA06Mm4DHix7SxN9eF+62XSw6Iy7oVMmMyls5RlrPrDasFUR958vs7nGGzV2SoQ==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "7dd6591d169d668d": {
@@ -632,6 +632,14 @@
     "2": "オフライン"
    }
   },
+  "c18b1b51c9edabf6": {
+   "listed": true,
+   "n": "cvMI8p0ZS+IwNGxH03v+XzXVopICdsu8pmcyj8NBhTKNht/OvAzRdNUn46RBaS0sfY4kEf9cDVRv8tmSZ/du4c6PxpbHeDYFVSXssSb7Y2WQVb9qgA==",
+   "p": "愛知県",
+   "s": {
+    "1": "オフライン"
+   }
+  },
   "c2378695a71b5efe": {
    "listed": true,
    "n": "2Yr/kFVaRIqJV/VDLE2MnQXozVUKE3taA6r0yg9kTaDF6mb7kVcX+7F3wkXb+YeyyjA3qmZ7GXp1lB9I2+NtGyZono5ggMWL18ip5Vu31dIFXxSvek9ClDwTEF3drIM5I3T2nmq/dHcc",
@@ -831,7 +839,7 @@
    "n": "PfLlDI1tT81mgaFkEDHlyrs+BtH9dveoFHV093TzGxgHfWXfNjdLDHhZFcBOOY7AnsW6wPwd0iU6u9kXLradpJsF3vU2k1lZ5dCYnBEQ/L1T61FJI5gX8xwH/AYTeXFPiu4wBiSb7n2i0I2pSOmV7KWFVL6fQKM=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "fd78124ef5c6d41b": {
@@ -851,7 +859,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 22:20",
+ "all_checked_at": "2026-11-26 22:30",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -876,6 +884,15 @@
    "",
    "",
    "一覧に戻った（稼働中なし）"
+  ],
+  [
+   "2026-11-26 22:30",
+   "fbdc4d0809bba5d8",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
   ]
  ],
  "queries": [
@@ -1321,7 +1338,7 @@
    "n": "PfLlDI1tT81mgaFkEDHlyrs+BtH9dveoFHV093TzGxgHfWXfNjdLDHhZFcBOOY7AnsW6wPwd0iU6u9kXLradpJsF3vU2k1lZ5dCYnBEQ/L1T61FJI5gX8xwH/AYTeXFPiu4wBiSb7n2i0I2pSOmV7KWFVL6fQKM=",
    "q": "9e6d0450cf492a7e",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "fc59e391aa15647a": {
