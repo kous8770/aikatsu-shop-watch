@@ -106,11 +106,11 @@
    }
   },
   "2fb4917dbb7f90f8": {
-   "listed": false,
+   "listed": true,
    "n": "Et7XQJKkErVOOoCAht4scDlQzS4iFOw3Dj6BhG3H5XexNSueODYOP/q4bFcz3XfsMeJD1GLHJ9f++XcfVbdcNvsFNG6wAhqE0MgYQiAmGuQVJFcd6KUyFYzgHkb/FYy9KNo0IBD997aFsIM=",
    "p": "愛知県",
    "s": {
-    "1": "オフライン"
+    "1": "カード切れ停止中"
    }
   },
   "30b03e5702eb6f69": {
@@ -176,7 +176,7 @@
    "n": "d8/21Ija2ZJYNnXCtNyztvvWiQ9lp8umRV7ziUrfOmxHn/k5gqnWgN/oCRoBU8TVCtj3vJx0iAda/4Vb5rFo9u/uhwFZpq0oToTNFyhrv8yWE5xWvXxpjoJJe/k2qO4AfFkTEF70X3TVXzk/cqc=",
    "p": "愛知県",
    "s": {
-    "1": "オフライン"
+    "1": "稼働中"
    }
   },
   "44626375397636ac": {
@@ -243,6 +243,14 @@
     "1": "オフライン"
    }
   },
+  "5aacc756aa9869b1": {
+   "listed": true,
+   "n": "GN2q3OnGerwOIzmycFR6VSA1zKzYJqUesVOIozng372srIaj+HjHommtudeixb2eV88X4FXUafgv/hxekNsXWui+pnn7Ytld/6tOloXnS8JiZNJzNaPdAAcO+dn+3MPKRkc=",
+   "p": "愛知県",
+   "s": {
+    "1": "カード切れ停止中"
+   }
+  },
   "5f7f4c3c3fde962a": {
    "listed": true,
    "n": "9xI+/QrSOGsx0T9MkvH39NLLc7EG9LUqDbEIWg2YV35qXVXolqtHIEZNeYiw3l05skvEGPMRuAd4mZZG1xQBmZy2Q4B4ooUB42UagfAGe4hVtqsRd321DUGJIYTCLHM/cIPN00Y5EZli4A1l06D4iKzNzVpf",
@@ -265,8 +273,8 @@
    "n": "kgksEORAUiIBQVn+RNkMqJaPbELG/fVZQN7j69pzYyrqw2qEPXgcFT5luBFbrEhr2O3116lwP179B6bVrqWLWxB+uz2Up86ZOId6IXF6FlpnlwxCQeB/Q1KIYd3Oj44IP2g/kTFPGzX8eplAafTwLkDiY5wM",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中",
-    "2": "稼働中"
+    "1": "稼働中",
+    "2": "カード切れ停止中"
    }
   },
   "660547efb8aae520": {
@@ -384,7 +392,7 @@
    "n": "dixUhP5iAJ5fdMIJm+6hiilX8i0gKV7IFfHCbwNsCaIlENLfj0wtOOom/+Xz8OAL6YPB6MZYth7LXC1icKOtcV0uJwMgqH8v/EC0rYCPboc4NGA=",
    "p": "愛知県",
    "s": {
-    "1": "オフライン"
+    "1": "稼働中"
    }
   },
   "8bffe5fb4c72a344": {
@@ -651,7 +659,7 @@
    "p": "愛知県",
    "s": {
     "1": "オフライン",
-    "2": "オフライン"
+    "2": "カード切れ停止中"
    }
   },
   "ca1c9a724ef30db8": {
@@ -769,7 +777,7 @@
    "n": "HjZjDNYiJbmDlGgHPUgPvbVWrpO+pko8AZN+whGNCE/YbHDEvyC3kQo2QBxvY5Obmp0om4T4RPoT5uuPy7XO52jXoIx5zbC2W6i1HQywYLDZhk9pMnU8x7tngQo9WaCOdjAE",
    "p": "愛知県",
    "s": {
-    "1": "オフライン"
+    "1": "稼働中"
    }
   },
   "e9481aff494e620c": {
@@ -833,7 +841,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 13:10",
+ "all_checked_at": "2026-11-26 13:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
