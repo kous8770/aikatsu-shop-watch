@@ -90,10 +90,10 @@
    "n": "tVKX+ZWuK8GIRccOvVa8zxU7yBTwkdrD9k3vV0F3yfa9dgITUBQQ6O9u0YofU/jr8MSThoALv07fVPQwDU831fJkJLrukyLmoYX+zal1fBYWYYSBxmJRrMR020hlbDgFoTE2GlTajNLIcT0MjISjfUWMzfd+0QGXIB0=",
    "p": "岐阜県",
    "s": {
-    "1": "稼働中",
+    "1": "オフライン",
     "2": "オフライン",
-    "3": "稼働中",
-    "4": "カード切れ停止中"
+    "3": "オフライン",
+    "4": "オフライン"
    }
   },
   "2c7aa8251e9ed67a": {
@@ -796,7 +796,7 @@
    "n": "HjZjDNYiJbmDlGgHPUgPvbVWrpO+pko8AZN+whGNCE/YbHDEvyC3kQo2QBxvY5Obmp0om4T4RPoT5uuPy7XO52jXoIx5zbC2W6i1HQywYLDZhk9pMnU8x7tngQo9WaCOdjAE",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "e9481aff494e620c": {
@@ -812,7 +812,7 @@
    "n": "xsYuyyS0WQBNEiFqy0YKHAmGVk1fznP1kIT4dScikbseg6gPx0XA/xwBriDxHMtk9wTFnN79Y4q5vhhbdfHuGcjPZl3Y95Ad4dH7BTRSfosxLVp0sVXTpiminjWjEia3de2cGrnRSTRSedhOQbV2v8fxfoSdq+BtWZh5SB2EQnRhTGzNQCU=",
    "p": "愛知県",
    "s": {
-    "1": "オフライン"
+    "1": "カード切れ停止中"
    }
   },
   "f7e4190e4845b1aa": {
@@ -859,7 +859,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 23:10",
+ "all_checked_at": "2026-11-26 23:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -900,6 +900,42 @@
    "2",
    "稼働中",
    "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 23:20",
+   "289657c496a09895",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 23:20",
+   "289657c496a09895",
+   "3",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 23:20",
+   "289657c496a09895",
+   "4",
+   "カード切れ停止中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-26 23:20",
+   "ead0688295b2933b",
+   "1",
+   "オフライン",
+   "カード切れ停止中",
    "",
    "状態が変わった"
   ]
@@ -1016,10 +1052,10 @@
    "n": "tVKX+ZWuK8GIRccOvVa8zxU7yBTwkdrD9k3vV0F3yfa9dgITUBQQ6O9u0YofU/jr8MSThoALv07fVPQwDU831fJkJLrukyLmoYX+zal1fBYWYYSBxmJRrMR020hlbDgFoTE2GlTajNLIcT0MjISjfUWMzfd+0QGXIB0=",
    "q": "277bd131f15abc71",
    "s": {
-    "1": "稼働中",
+    "1": "オフライン",
     "2": "オフライン",
-    "3": "稼働中",
-    "4": "カード切れ停止中"
+    "3": "オフライン",
+    "4": "オフライン"
    }
   },
   "30b03e5702eb6f69": {
@@ -1317,7 +1353,7 @@
    "n": "xsYuyyS0WQBNEiFqy0YKHAmGVk1fznP1kIT4dScikbseg6gPx0XA/xwBriDxHMtk9wTFnN79Y4q5vhhbdfHuGcjPZl3Y95Ad4dH7BTRSfosxLVp0sVXTpiminjWjEia3de2cGrnRSTRSedhOQbV2v8fxfoSdq+BtWZh5SB2EQnRhTGzNQCU=",
    "q": "0c2ffad614ce9fe8",
    "s": {
-    "1": "オフライン"
+    "1": "カード切れ停止中"
    }
   },
   "f7e4190e4845b1aa": {
