@@ -30,7 +30,7 @@
    "n": "3ltflHzwmjMn4DfIvODnPY+MBTvHWqEIv3rD2qhROm2rhhCoVnW3wKwq+xBkRhV23oknY/K7uLBctuaZsYVUuaXmyqIbvA7EvPUAWRjM2ShVuokhOe7rcEmD0MkFGZcJQWXHeoarbVrS",
    "p": "愛知県",
    "s": {
-    "1": "オフライン",
+    "1": "稼働中",
     "2": "稼働中",
     "3": "稼働中"
    }
@@ -265,7 +265,7 @@
    "n": "kgksEORAUiIBQVn+RNkMqJaPbELG/fVZQN7j69pzYyrqw2qEPXgcFT5luBFbrEhr2O3116lwP179B6bVrqWLWxB+uz2Up86ZOId6IXF6FlpnlwxCQeB/Q1KIYd3Oj44IP2g/kTFPGzX8eplAafTwLkDiY5wM",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
+    "1": "カード切れ停止中",
     "2": "稼働中"
    }
   },
@@ -559,7 +559,7 @@
    }
   },
   "b1bc391ffe5bc8c8": {
-   "listed": true,
+   "listed": false,
    "n": "xv5qsKU6mYpc2n8rZjwlA1lM2BI8Y3oklj9dOGxA7zJN0d89Fb1u7zM56YbData5ol9sxm4ZSgZQEEZqcq6uw/cy0rD3jejFBV061QnwcDFWp0yfRzBmsNF3OcNCK8ONtNHoOnUcc3yPBXFa8D820eyaH/8=",
    "p": "岐阜県",
    "s": {
@@ -833,7 +833,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 12:10",
+ "all_checked_at": "2026-11-26 12:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
