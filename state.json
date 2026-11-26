@@ -222,7 +222,7 @@
    "n": "zTFCLJTS6Ne5BSx3ayFjEpd7Lhf0tyw6wEEcPrKhlmmCxovU9L/egqVcgUvxq3+5UjGQO/rBNaNs6qZTOA+YrRtA",
    "p": "岐阜県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "54cee7cf0f87125d": {
@@ -296,7 +296,7 @@
    "n": "5BBW0pXEKPIKBb3uXk3t5hAkkrJUdIEJ/KVBIAcpL5CyIpiBA+cUzcXpV91OtbJ5MrDcrHfPsdhOxabdBZvbSmuYh8y61npEyZSoXdk=",
    "p": "岐阜県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "71f184464dbd8867": {
@@ -842,7 +842,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-26 21:50",
+ "all_checked_at": "2026-11-26 22:00",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
