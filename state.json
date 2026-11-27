@@ -30,7 +30,7 @@
    "n": "3ltflHzwmjMn4DfIvODnPY+MBTvHWqEIv3rD2qhROm2rhhCoVnW3wKwq+xBkRhV23oknY/K7uLBctuaZsYVUuaXmyqIbvA7EvPUAWRjM2ShVuokhOe7rcEmD0MkFGZcJQWXHeoarbVrS",
    "p": "愛知県",
    "s": {
-    "1": "オフライン",
+    "1": "稼働中",
     "2": "オフライン",
     "3": "オフライン"
    }
@@ -167,7 +167,8 @@
    "n": "9LD/wBCePIwhxSk8m9UAl51UmYoZZnxbPbjStGDNNOGE5UCl8A9V3kdBtCTrS7vhWuORmVr62Kwepl2unUeo",
    "p": "岐阜県",
    "s": {
-    "1": "オフライン"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "3b3fc1ad6e3385a8": {
@@ -404,7 +405,7 @@
    }
   },
   "8bffe5fb4c72a344": {
-   "listed": true,
+   "listed": false,
    "n": "sSPRFE9uS4EEOLOia+YU5qqXz6PNzGg9oWRBMA9i5nQENe2BP+LCBxZontoweuc+ZJe3wKBQQgWpMxn6ecRcp4Gcs3IkzjiEjpO4UBjF1hVWPmpR/Be+X0b+hF5S3dlF2KoEsM2G6gEiBPnI5kQ=",
    "p": "愛知県",
    "s": {
@@ -873,7 +874,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-27 11:10",
+ "all_checked_at": "2026-11-27 11:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1042,12 +1043,10 @@
     "1": "１弾・１弾",
     "2": "１弾・１弾"
    },
-   "gone_m": {
-    "2": "2026-11-23 09:43:05"
-   },
    "listed": true,
    "m": {
-    "1": "2026-11-25 09:43:25"
+    "1": "2026-11-25 09:43:25",
+    "2": "2026-11-23 09:43:05"
    },
    "miss": 0,
    "n": "9LD/wBCePIwhxSk8m9UAl51UmYoZZnxbPbjStGDNNOGE5UCl8A9V3kdBtCTrS7vhWuORmVr62Kwepl2unUeo",
