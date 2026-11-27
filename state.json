@@ -269,7 +269,7 @@
    }
   },
   "62e6f47f8bc51358": {
-   "listed": true,
+   "listed": false,
    "n": "5F0zuNBMTeh4RQfl9NVynVS+mklZfFybqr9YpK/3XkOeO56OUy9w//iBQB8pYgnhKK+uK4l/m3hAgL9yNoqFVxvoPNoMSFeDF74yxYt0W+zX64tE+JEG1yTux0Jyyb38yiTLlff4FIp9AcYpp/6hc12G+6GhnIo=",
    "p": "愛知県",
    "s": {
@@ -634,7 +634,7 @@
    }
   },
   "c106be75e52ed8e7": {
-   "listed": true,
+   "listed": false,
    "n": "2p9/ur9qAdBRMnbF70ieWkIXvptnggkO4UETPPpPOSNEje6Q0YNU4m3OfG2w2DXhpsVSU8KmYFfTeTTVK2QibL614b/apGdwXlXLcWF07S9jCP9SMiOwmTSdNhlz/cpSIaEjheUaOvhM5jkJyaz7vvnGaY90LTBB1+bAKs8WLTVWlrgqQPLUBJQbBDo=",
    "p": "愛知県",
    "s": {
@@ -869,7 +869,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-27 17:20",
+ "all_checked_at": "2026-11-27 17:30",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1228,7 +1228,7 @@
    "m": {
     "1": "2026-11-24 10:03:34"
    },
-   "miss": 0,
+   "miss": 1,
    "n": "2p9/ur9qAdBRMnbF70ieWkIXvptnggkO4UETPPpPOSNEje6Q0YNU4m3OfG2w2DXhpsVSU8KmYFfTeTTVK2QibL614b/apGdwXlXLcWF07S9jCP9SMiOwmTSdNhlz/cpSIaEjheUaOvhM5jkJyaz7vvnGaY90LTBB1+bAKs8WLTVWlrgqQPLUBJQbBDo=",
    "q": "1042bc2ba359b418",
    "s": {
