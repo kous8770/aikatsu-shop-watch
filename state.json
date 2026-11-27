@@ -158,7 +158,7 @@
    "n": "e+bhqxFndk5uh0qPy++jy1QjXGYRswWEP4syWTl62zaeYDM8UUCCXE7Rp9LbYhAepNb71OS3pfe0duH4kM2R3xztWWWx08VSfC8NISL9GBWrG+F7OHsti18fMJ5oiBRUmQvR+nKHO3AAfSBaZ8mBQodZ5ujSCVTNSUYvQIM7qM0Bswk=",
    "p": "岐阜県",
    "s": {
-    "1": "稼働中"
+    "1": "カード切れ停止中"
    }
   },
   "3b37135838a8795c": {
@@ -215,7 +215,7 @@
    "n": "uT8iQWkq+pvwdbj+1qo/mllwsbZpBGgHZ/wuDsslsPKlcmRBR7R9RGcth/uMAbrFPVXhSM5j73QfK7RIsftZyvbvjHsRIYuDzHe6dXaN9SagWYfufu1o",
    "p": "岐阜県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "オフライン"
    }
   },
   "51f0dc4bad07f7a2": {
@@ -248,7 +248,7 @@
    "n": "DX2/YiUppuENyj9KxNByhjEZib2vNNUYnmnVYRUyzLJ8tXVzCC0WJcQP8jZCObYCBGk2HVTvf1QdARNWjwEFJREB/Gyd6Tnr/Nvc1LBm5qKYl6lhtE6bFFg=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "5aacc756aa9869b1": {
@@ -268,7 +268,7 @@
    }
   },
   "62e6f47f8bc51358": {
-   "listed": false,
+   "listed": true,
    "n": "5F0zuNBMTeh4RQfl9NVynVS+mklZfFybqr9YpK/3XkOeO56OUy9w//iBQB8pYgnhKK+uK4l/m3hAgL9yNoqFVxvoPNoMSFeDF74yxYt0W+zX64tE+JEG1yTux0Jyyb38yiTLlff4FIp9AcYpp/6hc12G+6GhnIo=",
    "p": "愛知県",
    "s": {
@@ -330,7 +330,8 @@
    "n": "d44mcBvYngZlm2TwONKgc2NZBQK+dg100XWiJXATztvzwmhT21WIT4jD9bK7ssINCXmgwuHJexPivv4LUYg8yjo3c0wgMwA1usfoPKOBLh+C913WIZNVC3Nw4+BFsOJ0TilGNxINQqL4mQfqSqPOoQWJVQYlUyd8WoQ=",
    "p": "愛知県",
    "s": {
-    "1": "オフライン"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "75495e1c8887add3": {
@@ -373,7 +374,7 @@
    "p": "愛知県",
    "s": {
     "1": "カード切れ停止中",
-    "2": "カード切れ停止中",
+    "2": "オフライン",
     "3": "オフライン"
    }
   },
@@ -653,7 +654,7 @@
    "n": "cvMI8p0ZS+IwNGxH03v+XzXVopICdsu8pmcyj8NBhTKNht/OvAzRdNUn46RBaS0sfY4kEf9cDVRv8tmSZ/du4c6PxpbHeDYFVSXssSb7Y2WQVb9qgA==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "c2378695a71b5efe": {
@@ -876,13 +877,24 @@
    }
   }
  },
- "all_checked_at": "2026-11-27 22:10",
+ "all_checked_at": "2026-11-27 22:19",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
  "fail_since": "",
  "no_time": "2026-11-25 14:00",
- "pending": [],
+ "pending": [
+  {
+   "k": "74d07ff1fdee68c8",
+   "kind": "added",
+   "machines": [
+    {
+     "after": "",
+     "no": "2"
+    }
+   ]
+  }
+ ],
  "pending_all": [
   [
    "2026-11-27 22:00",
@@ -892,6 +904,33 @@
    "",
    "",
    "一覧に戻った（稼働中なし）"
+  ],
+  [
+   "2026-11-27 22:19",
+   "3a7e2dcab9ee9fa8",
+   "1",
+   "稼働中",
+   "カード切れ停止中",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-27 22:19",
+   "74d07ff1fdee68c8",
+   "2",
+   "",
+   "",
+   "",
+   "台が増えた・通知"
+  ],
+  [
+   "2026-11-27 22:19",
+   "8151ddfbc058bf90",
+   "2",
+   "カード切れ停止中",
+   "オフライン",
+   "",
+   "状態が変わった"
   ]
  ],
  "queries": [
@@ -1040,7 +1079,7 @@
    "n": "e+bhqxFndk5uh0qPy++jy1QjXGYRswWEP4syWTl62zaeYDM8UUCCXE7Rp9LbYhAepNb71OS3pfe0duH4kM2R3xztWWWx08VSfC8NISL9GBWrG+F7OHsti18fMJ5oiBRUmQvR+nKHO3AAfSBaZ8mBQodZ5ujSCVTNSUYvQIM7qM0Bswk=",
    "q": "277bd131f15abc71",
    "s": {
-    "1": "稼働中",
+    "1": "カード切れ停止中",
     "2": "オフライン"
    }
   },
@@ -1118,7 +1157,8 @@
    },
    "listed": true,
    "m": {
-    "1": "2026-11-24 18:43:03"
+    "1": "2026-11-24 18:43:03",
+    "2": ""
    },
    "miss": 0,
    "n": "d44mcBvYngZlm2TwONKgc2NZBQK+dg100XWiJXATztvzwmhT21WIT4jD9bK7ssINCXmgwuHJexPivv4LUYg8yjo3c0wgMwA1usfoPKOBLh+C913WIZNVC3Nw4+BFsOJ0TilGNxINQqL4mQfqSqPOoQWJVQYlUyd8WoQ=",
@@ -1149,7 +1189,7 @@
    "q": "3b2f29ed21a45173",
    "s": {
     "1": "カード切れ停止中",
-    "2": "カード切れ停止中",
+    "2": "オフライン",
     "3": "オフライン"
    }
   },
