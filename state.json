@@ -375,7 +375,7 @@
    "n": "VZA1wgxFEynnYKh0tSUsqWtSKXUFYa89lMb7RE9sVGUvPZ6JFr3WwheBCvOfOdbCxu/y8pMvfxlxZ3+Vq6yQW44eDxOQATFrZa2IBBaWWuKur9ZtuVmA9fZFVAmMEA==",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中",
+    "1": "オフライン",
     "2": "オフライン",
     "3": "オフライン"
    }
@@ -879,7 +879,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-27 23:50",
+ "all_checked_at": "2026-11-28 00:00",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -982,6 +982,15 @@
    "稼働中",
    "",
    "カード切れ→稼働・通知"
+  ],
+  [
+   "2026-11-28 00:00",
+   "8151ddfbc058bf90",
+   "1",
+   "カード切れ停止中",
+   "オフライン",
+   "",
+   "状態が変わった"
   ]
  ],
  "queries": [
@@ -1239,7 +1248,7 @@
    "n": "VZA1wgxFEynnYKh0tSUsqWtSKXUFYa89lMb7RE9sVGUvPZ6JFr3WwheBCvOfOdbCxu/y8pMvfxlxZ3+Vq6yQW44eDxOQATFrZa2IBBaWWuKur9ZtuVmA9fZFVAmMEA==",
    "q": "3b2f29ed21a45173",
    "s": {
-    "1": "カード切れ停止中",
+    "1": "オフライン",
     "2": "オフライン",
     "3": "オフライン"
    }
