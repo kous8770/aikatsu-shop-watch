@@ -216,7 +216,7 @@
    "n": "uT8iQWkq+pvwdbj+1qo/mllwsbZpBGgHZ/wuDsslsPKlcmRBR7R9RGcth/uMAbrFPVXhSM5j73QfK7RIsftZyvbvjHsRIYuDzHe6dXaN9SagWYfufu1o",
    "p": "岐阜県",
    "s": {
-    "1": "オフライン"
+    "1": "カード切れ停止中"
    }
   },
   "51f0dc4bad07f7a2": {
@@ -696,7 +696,7 @@
    "n": "iTrb+dKg3wt+yz08Bi3Icde3UfdC1EL+w6HzN3uN4FQ5NZIAULofgSFISb6n8ZJ12U/gUv18t3VjKN9blWGWY/xAjUAja19Dktt4U0ZMl5VOVWI=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "カード切れ停止中"
    }
   },
   "ca45625e1f6f733f": {
@@ -849,7 +849,7 @@
    "n": "PfLlDI1tT81mgaFkEDHlyrs+BtH9dveoFHV093TzGxgHfWXfNjdLDHhZFcBOOY7AnsW6wPwd0iU6u9kXLradpJsF3vU2k1lZ5dCYnBEQ/L1T61FJI5gX8xwH/AYTeXFPiu4wBiSb7n2i0I2pSOmV7KWFVL6fQKM=",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "稼働中"
    }
   },
   "fd78124ef5c6d41b": {
@@ -869,7 +869,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-27 20:12",
+ "all_checked_at": "2026-11-27 20:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1333,7 +1333,7 @@
    "n": "PfLlDI1tT81mgaFkEDHlyrs+BtH9dveoFHV093TzGxgHfWXfNjdLDHhZFcBOOY7AnsW6wPwd0iU6u9kXLradpJsF3vU2k1lZ5dCYnBEQ/L1T61FJI5gX8xwH/AYTeXFPiu4wBiSb7n2i0I2pSOmV7KWFVL6fQKM=",
    "q": "9e6d0450cf492a7e",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "稼働中"
    }
   },
   "fc59e391aa15647a": {
