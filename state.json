@@ -154,12 +154,11 @@
    }
   },
   "3a7e2dcab9ee9fa8": {
-   "listed": false,
+   "listed": true,
    "n": "e+bhqxFndk5uh0qPy++jy1QjXGYRswWEP4syWTl62zaeYDM8UUCCXE7Rp9LbYhAepNb71OS3pfe0duH4kM2R3xztWWWx08VSfC8NISL9GBWrG+F7OHsti18fMJ5oiBRUmQvR+nKHO3AAfSBaZ8mBQodZ5ujSCVTNSUYvQIM7qM0Bswk=",
    "p": "岐阜県",
    "s": {
-    "1": "オフライン",
-    "2": "オフライン"
+    "1": "稼働中"
    }
   },
   "3b37135838a8795c": {
@@ -502,7 +501,7 @@
    "n": "xAl2N5qoDpScFuwN/JG70wsRAlx2qS9nRWnoA1OoQRQ91E1Qa3YORb+5oaiFfvS120hiCfkk4WeLnJgmyag9izgEeqFqOOSomOTANDv+bySyc1yEqBlZ9L7WbrmbuT8HWnGeDxQuww==",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "カード切れ停止中"
    }
   },
   "a036d3550f03d502": {
@@ -615,6 +614,14 @@
     "2": "稼働中"
    }
   },
+  "b7e4b74336213a3c": {
+   "listed": true,
+   "n": "k454gbYUbOqYTIzh+i2/a6dCo9R4kqLgPcmNpI8Gt27GkvYcxL3gp06LxMC0qgG7PmeoExDGXneCo83kIuccTSXvsAk3QQ1BUv8FqlaZxPKavOL5wlWpzzX4kpBDvy9aLe3uV3RJA+M6rcMKlD1+ii6TQmDPH8cp8/wL",
+   "p": "愛知県",
+   "s": {
+    "1": "稼働中"
+   }
+  },
   "ba38aabac68aad91": {
    "listed": true,
    "n": "Um24b9jr32VMLyyKHl7PENQxwuZEqOsjtSAI/uHZGl7YKeBlLNflhKRtMZ6GqO2ufxEx15JbLAfvNHSwbbLJtvDnUyk+Oy553EJvJQH746eLgCJgNS3rCVBKbIyAbJhwQ00=",
@@ -696,7 +703,7 @@
    "n": "iTrb+dKg3wt+yz08Bi3Icde3UfdC1EL+w6HzN3uN4FQ5NZIAULofgSFISb6n8ZJ12U/gUv18t3VjKN9blWGWY/xAjUAja19Dktt4U0ZMl5VOVWI=",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "オフライン"
    }
   },
   "ca45625e1f6f733f": {
@@ -869,7 +876,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-27 21:10",
+ "all_checked_at": "2026-11-27 21:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1015,22 +1022,16 @@
     "1": "１弾・１弾",
     "2": "１弾・１弾"
    },
-   "gone_at": "2026-11-27 00:48",
-   "listed": false,
+   "listed": true,
    "m": {
-    "1": "2026-11-23 09:23:12",
-    "2": "2026-11-23 15:43:05"
+    "1": "2026-11-23 09:23:12"
    },
-   "miss": 3,
+   "miss": 0,
    "n": "e+bhqxFndk5uh0qPy++jy1QjXGYRswWEP4syWTl62zaeYDM8UUCCXE7Rp9LbYhAepNb71OS3pfe0duH4kM2R3xztWWWx08VSfC8NISL9GBWrG+F7OHsti18fMJ5oiBRUmQvR+nKHO3AAfSBaZ8mBQodZ5ujSCVTNSUYvQIM7qM0Bswk=",
    "q": "277bd131f15abc71",
    "s": {
-    "1": "オフライン",
+    "1": "稼働中",
     "2": "オフライン"
-   },
-   "wait_run": {
-    "before": "2026-11-23 15:43:05",
-    "since": "2026-11-27 00:20"
    }
   },
   "3b37135838a8795c": {
