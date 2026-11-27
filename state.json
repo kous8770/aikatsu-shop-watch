@@ -327,7 +327,7 @@
    }
   },
   "74d07ff1fdee68c8": {
-   "listed": true,
+   "listed": false,
    "n": "d44mcBvYngZlm2TwONKgc2NZBQK+dg100XWiJXATztvzwmhT21WIT4jD9bK7ssINCXmgwuHJexPivv4LUYg8yjo3c0wgMwA1usfoPKOBLh+C913WIZNVC3Nw4+BFsOJ0TilGNxINQqL4mQfqSqPOoQWJVQYlUyd8WoQ=",
    "p": "愛知県",
    "s": {
@@ -356,7 +356,7 @@
    "n": "e946bMJN2Op6S8a3nuAnsQ6izLJfAXy7nqpSRA2jf6zDVLp7QuW5z1AYs4NhiSZNTRGIFZ15Pv4mJMMNy0KDE4xJ4lsncCZbdEM+jaIOWy1OE1qCQ2sGC/GuT/DDHwBkM8WhaBWuYdJ7tR8piGHUzGcOds3Vl43UX3KTerLuJmNVzKVzYd0=",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "オフライン"
    }
   },
   "7dedb5461944cf3e": {
@@ -869,7 +869,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-27 18:40",
+ "all_checked_at": "2026-11-27 18:50",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1112,7 +1112,7 @@
    "m": {
     "1": "2026-11-24 18:43:03"
    },
-   "miss": 0,
+   "miss": 1,
    "n": "d44mcBvYngZlm2TwONKgc2NZBQK+dg100XWiJXATztvzwmhT21WIT4jD9bK7ssINCXmgwuHJexPivv4LUYg8yjo3c0wgMwA1usfoPKOBLh+C913WIZNVC3Nw4+BFsOJ0TilGNxINQqL4mQfqSqPOoQWJVQYlUyd8WoQ=",
    "q": "9e6d0450cf492a7e",
    "s": {
