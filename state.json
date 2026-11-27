@@ -564,7 +564,7 @@
    }
   },
   "b0fea615eb85a725": {
-   "listed": true,
+   "listed": false,
    "n": "Vyr8oeSyKun2vAZ6LQkUbWfs1ZdSZNxDs0KSxCH5hZrXFRrzMlXcuhiOc96zUzGetH3KYkiNrNM0+XnWadVxZOjCmW0J9al+xWN/DhjoHi2LXOC5Mh6Em6ApVMNkanAFe8Av26Jc202HeOoEuv4=",
    "p": "愛知県",
    "s": {
@@ -869,7 +869,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-27 17:40",
+ "all_checked_at": "2026-11-27 17:50",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1221,14 +1221,15 @@
     "1": "１弾・１弾",
     "2": "１弾・１弾"
    },
+   "gone_at": "2026-11-27 17:50",
    "gone_m": {
     "2": "2026-11-24 10:03:33"
    },
-   "listed": true,
+   "listed": false,
    "m": {
     "1": "2026-11-24 10:03:34"
    },
-   "miss": 2,
+   "miss": 3,
    "n": "2p9/ur9qAdBRMnbF70ieWkIXvptnggkO4UETPPpPOSNEje6Q0YNU4m3OfG2w2DXhpsVSU8KmYFfTeTTVK2QibL614b/apGdwXlXLcWF07S9jCP9SMiOwmTSdNhlz/cpSIaEjheUaOvhM5jkJyaz7vvnGaY90LTBB1+bAKs8WLTVWlrgqQPLUBJQbBDo=",
    "q": "1042bc2ba359b418",
    "s": {
