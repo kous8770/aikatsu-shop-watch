@@ -38,8 +38,8 @@
    "n": "3ltflHzwmjMn4DfIvODnPY+MBTvHWqEIv3rD2qhROm2rhhCoVnW3wKwq+xBkRhV23oknY/K7uLBctuaZsYVUuaXmyqIbvA7EvPUAWRjM2ShVuokhOe7rcEmD0MkFGZcJQWXHeoarbVrS",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中",
+    "1": "オフライン",
+    "2": "オフライン",
     "3": "オフライン"
    }
   },
@@ -184,7 +184,8 @@
    "n": "0UgGCZ9Nt3ZUv9WEsqqkcG0t5NcQdkGvvTM+bvWV4ceXMbE+QjkxfwET1z7qt/bslIifLQw9Kuz+eskaRq86LutyTAOo7sRayvOO7FmYAfh+NdLvvpnJx4kKyitfbHLVG+aI5u1MIa64hA4=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "稼働中",
+    "2": "オフライン"
    }
   },
   "3a7e2dcab9ee9fa8": {
@@ -563,7 +564,8 @@
    "p": "愛知県",
    "s": {
     "1": "オフライン",
-    "2": "オフライン"
+    "2": "オフライン",
+    "3": "オフライン"
    }
   },
   "9f97b61a87990e4d": {
@@ -646,7 +648,7 @@
    "n": "paEKAF6EbDoGCdVAFuXmOeQLd/RQFN/vEFwVy0iyOXbre0hWMCmGZ1AFP6aEfkTXRygCQmPmImJuEwZ5v2tECyq40c/cKS5wXxtKNCmdBcK37fLjRzydVOBStVwGr5LfwyHqNrRTQMJE17htx6JobLQz87Uz5sK45KAw",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "オフライン"
    }
   },
   "b1bc391ffe5bc8c8": {
@@ -707,7 +709,7 @@
    "p": "愛知県",
    "s": {
     "1": "オフライン",
-    "2": "稼働中"
+    "2": "オフライン"
    }
   },
   "bfe940eefd5f850a": {
@@ -716,7 +718,7 @@
    "p": "愛知県",
    "s": {
     "1": "稼働中",
-    "2": "カード切れ停止中"
+    "2": "オフライン"
    }
   },
   "c106be75e52ed8e7": {
@@ -875,7 +877,7 @@
    "n": "ZKzfLv6sBpRzZ0wg7cdp/NEL4nbEvs2YafZNJD59+C7FANlmPuy+uyEeAJdih4lVmgtYnWONwYDudpnlPCG2DBj93Oeke+jZ+/OxJxZP+1KKq6NxVYtW8TiVJBZHNbB8",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン"
    }
   },
   "e79e7e799851de2e": {
@@ -971,7 +973,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 23:20",
+ "all_checked_at": "2026-11-28 23:30",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -986,6 +988,16 @@
     {
      "after": "",
      "no": "2"
+    }
+   ]
+  },
+  {
+   "k": "9bd719a80c2d8165",
+   "kind": "added",
+   "machines": [
+    {
+     "after": "",
+     "no": "3"
     }
    ]
   }
@@ -1067,6 +1079,15 @@
    "2026-11-28 23:20",
    "9bd719a80c2d8165",
    "2",
+   "",
+   "",
+   "",
+   "台が増えた・通知"
+  ],
+  [
+   "2026-11-28 23:30",
+   "9bd719a80c2d8165",
+   "3",
    "",
    "",
    "",
@@ -1383,7 +1404,8 @@
    "listed": true,
    "m": {
     "1": "2026-11-23 10:03:31",
-    "2": ""
+    "2": "",
+    "3": ""
    },
    "miss": 0,
    "n": "+/oBU9m48Eisob532WaA6oPGg65KUcMGIkHNwlngEOzXTAxU44HhqR2/Ob2Cqk1YRFDjKm+Sex+yaekU2pyuAoMYG4XOmfAcr0RbFDrSuKS0HnahIq6DVn4EIa1tkSKIqq3dGHoi48B+xcoxLso4nY8R52Dx05oartTka8mpug==",
