@@ -249,7 +249,8 @@ def describe(ev, names):
         parts = [f"{m['no']}台目：{short_time(m['after'])}" for m in ev["machines"]]
         return f"➕ **{name}** 台が増えました（{'／'.join(parts)}）"
     if kind == "restock":
-        parts = [f"{m['no']}台目" + (f"（{m['after']}）" if m["after"] else "") for m in ev["machines"]]
+        parts = [f"{m['no']}台目" + (f"（{m['after']}）" if m["after"] else "") + ("（閉店前はカード切れ停止中、開店で稼働中）" if m.get("overnight") else "")
+                 for m in ev["machines"]]
         return f"✨ **{name}** カード切れ停止中 → **稼働中**：{'／'.join(parts)}　カードが補充されたかもしれません"
     if kind == "cards":
         parts = [f"{m['no']}台目：{m['before']} → **{m['after']}**" for m in ev["machines"]]
@@ -399,7 +400,7 @@ def describe_log(rows, names):
             elif kind == "台が増えた・通知":
                 parts.append(f"{who} 増えた {short_time(after)}")
             elif kind == "一覧に戻った（稼働中なし）":
-                parts.append("一覧に戻った（稼働中の台なし。稼働中になったら復活として知らせます）")
+                parts.append("一覧に戻った（稼働中の台なし、または夜。昼に稼働中になったら復活として知らせます）")
             elif kind == "復活・通知" and not after:
                 parts.append(f"復活（前回 {short_time(before)}。今は公式に時刻の表示なし）")
             elif kind == "復活・通知":
@@ -508,6 +509,11 @@ def main():
             now_s = {m["no"]: m["status"] for m in s["machines"] if m.get("status")}
             old_s = old.get("s") if old else None
             keep = {"n": enc_name(k, s), "c": {**(old_c or {}), **now_c}, "s": {**(old_s or {}), **now_s}}
+            # 昼（夜の時間帯の外）に最後に見たとき「カード切れ停止中」だった台。夜中の 0:20・5:00 のまとめ処理をはさんでも、
+            # 朝に稼働中になったら補充とみなすため（夜の状態の変化は ✨ 🔁 の判断に使わない）
+            kire_mark = set(old.get("kire_mark", [])) if old else set()
+            if old and old.get("kire_mark"):
+                keep["kire_mark"] = sorted(kire_mark)
             # 公式サイトに時刻が出ていない台（2026-11-25 13:30 から全台で表示が消えた）は「更新なし」とみなし、
             # 覚えている時刻をそのまま使う（空で上書きすると、36 時間の判定や復活の判定ができなくなるため）
             seen_machines += len(now_m)
@@ -534,13 +540,14 @@ def main():
                 no_time_store = bool(raw_m) and all(not t for t in raw_m.values())
                 running = [no for no, x in now_s.items() if x == "稼働中"]
                 status_known = any(now_s.values())
-                if not newer and no_time_store and old.get("gone_at") and (running or not status_known):
+                if not newer and no_time_store and old.get("gone_at") and (running or not status_known) and not quiet:
                     # 公式サイトに時刻が出ていない間は、一覧に戻って稼働中の台があることを復活として知らせる
                     events.append({"kind": "revived", "k": k, "before": before, "gap": None,
                                    "machines": [{"no": no, "after": ""} for no in raw_m], "running": running})
                     history.append([checked_at, k, "", before, "", "", "復活・通知"])
                 elif not newer and no_time_store and old.get("gone_at"):
-                    # 戻ったが稼働中の台がない（夜中の表示の揺れなど）。更新ログだけにして、台が稼働中になったら復活として知らせる
+                    # 戻ったが稼働中の台がない、または夜（0:20 のまとめ処理などで一斉に稼働中になる）。更新ログだけにして、
+                    # 昼に台が稼働中になったら復活として知らせる
                     history.append([checked_at, k, "", before, "", "", "一覧に戻った（稼働中なし）"])
                     keep["wait_run"] = {"since": checked_at, "before": before}
                 elif newer:
@@ -600,21 +607,31 @@ def main():
                 events.append({"kind": "cards", "k": k, "machines": cards_changed})
             # 台の状態の変化。カード切れ停止中 → 稼働中 は補充の合図なので大事な方へ（夜は朝にまとめる）。ほかは更新ログだけ
             restocked = []
-            if old_s is not None:
-                for no, stt in now_s.items():
-                    if no in old_s and stt != old_s[no]:
-                        if "カード切れ" in old_s[no] and stt == "稼働中":
-                            restocked.append({"no": no, "before": old_s[no], "after": now_c.get(no, "")})
-                            history.append([checked_at, k, no, old_s[no], stt, "", "カード切れ→稼働・通知"])
-                        else:
-                            history.append([checked_at, k, no, old_s[no], stt, "", "状態が変わった"])
+            for no, stt in now_s.items():
+                prev = old_s.get(no) if old_s else None
+                if prev is not None and stt != prev:
+                    was_kire = "カード切れ" in prev or no in kire_mark
+                    if not quiet and stt == "稼働中" and was_kire:
+                        restocked.append({"no": no, "before": prev, "after": now_c.get(no, ""), "overnight": "カード切れ" not in prev})
+                        history.append([checked_at, k, no, prev, stt, "", "カード切れ→稼働・通知"])
+                    else:
+                        history.append([checked_at, k, no, prev, stt, "", "状態が変わった"])
+                if not quiet:
+                    if "カード切れ" in stt:
+                        kire_mark.add(no)
+                    elif stt == "稼働中":
+                        kire_mark.discard(no)
+            if kire_mark:
+                keep["kire_mark"] = sorted(kire_mark)
+            else:
+                keep.pop("kire_mark", None)
             if restocked:
                 events.append({"kind": "restock", "k": k, "machines": restocked})
             # 戻ったときに稼働中の台がなかった店：稼働中になったら、ここで復活として知らせる
             wait = old.get("wait_run")
             if wait:
                 running = [no for no, x in now_s.items() if x == "稼働中"]
-                if running:
+                if running and not quiet:
                     events.append({"kind": "revived", "k": k, "before": wait.get("before", ""), "gap": None,
                                    "machines": [{"no": no, "after": ""} for no in running], "running": running, "late": True})
                     history.append([checked_at, k, "", wait.get("before", ""), "", "", "復活・通知"])
