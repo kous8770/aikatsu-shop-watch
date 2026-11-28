@@ -481,7 +481,7 @@
    }
   },
   "95955fa96bcb1849": {
-   "listed": true,
+   "listed": false,
    "n": "/KHSdptyWE5UdFLtnnsP5xr497K1onIa8yxOHb8/Qt3ml2bQi8B2B/qQxdIMe1u0oaVeZ/0Cvs3oRk+1CWabhBdMvNNnO61jTFGFBPsg6UxvlGXuyVC63EquPvs=",
    "p": "岐阜県",
    "s": {
@@ -555,7 +555,7 @@
    "p": "岐阜県",
    "s": {
     "1": "オフライン",
-    "2": "オフライン"
+    "2": "カード切れ停止中"
    }
   },
   "aae49bfb2df02881": {
@@ -920,7 +920,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 13:50",
+ "all_checked_at": "2026-11-28 14:00",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
