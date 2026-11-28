@@ -90,7 +90,7 @@
    "n": "AWzF/1AYHiKvkMCkz/LtuA8cz3Ve/qDEggp+JHPSA+u8KuarZEFrySwBhfHPNDHw1vm1M2GrfZvJFSoHpTAqnGJmIGw1D/VipRA4WKwG919L17YzzYqFR2HKM8kjxNYnxQD/YHQJntaaKeni7Ge5h3aYkEs=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
+    "1": "オフライン",
     "2": "オフライン"
    }
   },
@@ -950,7 +950,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 19:21",
+ "all_checked_at": "2026-11-28 19:30",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
