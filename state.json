@@ -184,7 +184,7 @@
    "n": "0UgGCZ9Nt3ZUv9WEsqqkcG0t5NcQdkGvvTM+bvWV4ceXMbE+QjkxfwET1z7qt/bslIifLQw9Kuz+eskaRq86LutyTAOo7sRayvOO7FmYAfh+NdLvvpnJx4kKyitfbHLVG+aI5u1MIa64hA4=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
+    "1": "オフライン",
     "2": "オフライン"
    }
   },
@@ -544,7 +544,7 @@
    "n": "4P6TvHjdM2es+35N8HPBRIuPRIuHwNCAx/pGqxnkG77JQhqLge6no2fumdqdy8P0gfcAEJDKCl38gPfxS0Nv5w2ytnqNwBClK3RhY994JWkE5z1Os/ddAhE3",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中",
+    "1": "オフライン",
     "2": "オフライン"
    }
   },
@@ -648,7 +648,8 @@
    "n": "paEKAF6EbDoGCdVAFuXmOeQLd/RQFN/vEFwVy0iyOXbre0hWMCmGZ1AFP6aEfkTXRygCQmPmImJuEwZ5v2tECyq40c/cKS5wXxtKNCmdBcK37fLjRzydVOBStVwGr5LfwyHqNrRTQMJE17htx6JobLQz87Uz5sK45KAw",
    "p": "愛知県",
    "s": {
-    "1": "オフライン"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "b1bc391ffe5bc8c8": {
@@ -717,7 +718,7 @@
    "n": "fu+bWm3soCRozl7YW3mG0FhNeN5DNU66or1A9Rwak52a+NnZBNk+8T1xkKCiCGDxi9x9QnW0ru6DVs3OXmz27U/JHTGUxjRXLT7XDy9/ZaxQ5hpyrqsVW63DByaOBzYXH0+CxT7oPmHlR2pdA3otBtdYy47gOI1zeOtzApARlNtMq1oUVjFZbqZlruEoey1NowaeZMUJe5lQ",
    "p": "愛知県",
    "s": {
-    "1": "稼働中",
+    "1": "オフライン",
     "2": "オフライン"
    }
   },
@@ -973,7 +974,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 23:40",
+ "all_checked_at": "2026-11-28 23:50",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
