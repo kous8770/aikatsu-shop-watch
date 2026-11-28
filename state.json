@@ -249,7 +249,7 @@
    "n": "6h7Oc7DCarp49lAaNKscwelesrfxjNkE7622kNFgaUhLOf7LQKOGeLLdKWRFJ5QB+kJVEpA7ISW4DV9mfCnmGqU=",
    "p": "岐阜県",
    "s": {
-    "1": "カード切れ停止中",
+    "1": "稼働中",
     "2": "稼働中"
    }
   },
@@ -934,7 +934,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 17:10",
+ "all_checked_at": "2026-11-28 17:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1144,7 +1144,7 @@
    "n": "6h7Oc7DCarp49lAaNKscwelesrfxjNkE7622kNFgaUhLOf7LQKOGeLLdKWRFJ5QB+kJVEpA7ISW4DV9mfCnmGqU=",
    "q": "085cc47680a3b8d8",
    "s": {
-    "1": "カード切れ停止中",
+    "1": "稼働中",
     "2": "稼働中"
    }
   },
