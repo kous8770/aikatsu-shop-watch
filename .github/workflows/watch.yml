@@ -33,6 +33,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_WEBHOOK_URL_ALL: ${{ secrets.DISCORD_WEBHOOK_URL_ALL }}   # 2 つ目のチャンネル（すべての更新）。なければ送らない
           YRT_WORDS: ${{ secrets.YRT_WORDS }}   # Yahoo! リアルタイム検索で探す地域の言葉（公開のログに出ないよう Secrets）
+          YRT_ACCOUNTS: ${{ secrets.YRT_ACCOUNTS }}   # 店の公式 X アカウント（カンマ区切り。公開のログに出ないよう Secrets）
           MIN_GAP_HOURS: "36"   # 何時間以上ぶりの更新で知らせるか
           QUIET_START: "22"     # この時刻から
           QUIET_END: "8"        # この時刻までは通知をためて、朝にまとめて送る（日本時間）
