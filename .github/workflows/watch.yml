@@ -24,6 +24,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: main   # 起動の合図を受けた時点ではなく、今いちばん新しい状態を読む（前の回の保存とぶつからないように）
 
       - name: 公式サイトを調べて通知する
         env:
@@ -45,6 +47,11 @@ jobs:
             [ -f history.csv ] && git add history.csv
             [ -f status_log.csv ] && git add status_log.csv
             git commit -m "状態を更新"
-            git pull --rebase -q   # 途中でプログラムが更新されていても保存できるようにする
-            git push
+            # 途中でプログラムや状態が更新されていても保存できるようにする。ぶつかったら、この回の保存は見送る
+            if git pull --rebase -q; then
+              git push
+            else
+              git rebase --abort || true
+              echo "前の回の保存とぶつかったので、この回の保存は見送りました"
+            fi
           fi

@@ -471,6 +471,7 @@ def main():
     names = {}
     errors = 0
     seen_machines = timeless = 0
+    now_status = {}   # 1 時間ごとの「稼働中の店」の一覧用：{店: (店名, [(台, 状態, 弾)])}
     # 時刻の表示が消えていた間の更新は見えていないので、表示が戻った最初の回は 🟢（36 時間以上ぶり）を出さない
     was_no_time = bool(state.get("no_time"))
     for qi, q in enumerate(queries, 1):
@@ -498,6 +499,7 @@ def main():
         for s in stores:
             k = key_of(s)
             names[k] = s["name"]
+            now_status[k] = (s["name"], [(m["no"], m.get("status") or "表示なし", "・".join(m["cards"])) for m in s["machines"]])
             now_m = {m["no"]: m["updated"] for m in s["machines"]}
             raw_m = dict(now_m)
             old = st.get(k)
@@ -702,6 +704,25 @@ def main():
             if lines:
                 header = f"**公式更新ログ（{now.strftime('%H:%M')}時点）**" + ("　※夜の間の分も含みます" if held_all else "")
                 sent += send_chunks(header, lines, "", "DISCORD_WEBHOOK_URL_ALL")
+    # 1 時間ごとに、今稼働中の台がある店の一覧を更新ログに出す（夜 22〜8 時は出さない）
+    hour_key = now.strftime("%Y-%m-%d %H")
+    if (os.environ.get("DISCORD_WEBHOOK_URL_ALL", "").strip() or (DRY_RUN and os.environ.get("DRY_RUN_ALL") == "1"))             and not quiet and now_status and state.get("hourly_last") != hour_key:
+        run_lines, kire_lines, off_n, run_n = [], [], 0, 0
+        for k, (name, ms) in now_status.items():
+            running = [(no, c) for no, x, c in ms if x == "稼働中"]
+            kire = [no for no, x, c in ms if "カード切れ" in x]
+            off_n += sum(1 for no, x, c in ms if x not in ("稼働中",) and "カード切れ" not in x)
+            run_n += len(running)
+            if running:
+                cards = sorted(set(c for _, c in running if c))
+                run_lines.append(f"▶ **{name}**（{'・'.join(no + '台目' for no, _ in running)}" + (f"：{'／'.join(cards)}" if cards else "") + f"／全{len(ms)}台）")
+            if kire:
+                kire_lines.append(f"⛔ **{name}**（{'・'.join(no + '台目' for no in kire)} カード切れ停止中）")
+        head = (f"**稼働中の店（{now.strftime('%H:%M')}時点）**　稼働中 {len(run_lines)} 店・{run_n} 台／カード切れ停止中 {len(kire_lines)} 店／オフラインほか {off_n} 台"
+                + ("　※一部の地域を読めませんでした" if errors else ""))
+        sent += send_chunks(head, (run_lines or ["（稼働中の店はありません）"]) + kire_lines, "", "DISCORD_WEBHOOK_URL_ALL")
+        state["hourly_last"] = hour_key
+
     # 見張りを加えたときと動作確認は、夜でもすぐ送る（手で操作したときなので）
     if info_lines:
         sent += send_chunks("**見張りの設定**", info_lines, "")
