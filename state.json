@@ -250,7 +250,7 @@
    "p": "岐阜県",
    "s": {
     "1": "稼働中",
-    "2": "カード切れ停止中"
+    "2": "稼働中"
    }
   },
   "52c4813520946b1a": {
@@ -332,7 +332,7 @@
    "n": "eoRf2GAwAAsjO9jekLYl18IZPhD17SBnYQyFu/8zJC47N5sT0/Q3CVADVE3dQO541LverNX1w3n3s16Uyqw9xOvfEe3uMf0vl3RvgAu3Ay9Mdku0u9w9OaJQ6NOSWChhqRySSdzkaJaTDCN35JMR+g==",
    "p": "岐阜県",
    "s": {
-    "1": "オフライン"
+    "1": "稼働中"
    }
   },
   "6e9af5dc0db84576": {
@@ -934,7 +934,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 15:10",
+ "all_checked_at": "2026-11-28 15:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1145,7 +1145,7 @@
    "q": "085cc47680a3b8d8",
    "s": {
     "1": "稼働中",
-    "2": "カード切れ停止中"
+    "2": "稼働中"
    }
   },
   "723810e7a810ca71": {
