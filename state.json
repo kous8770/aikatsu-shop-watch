@@ -958,11 +958,12 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 21:40",
+ "all_checked_at": "2026-11-28 21:46",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
  "fail_since": "",
+ "hourly_last": "2026-11-28 21",
  "no_time": "2026-11-25 14:00",
  "pending": [],
  "pending_all": [],
