@@ -90,7 +90,8 @@
    "n": "AWzF/1AYHiKvkMCkz/LtuA8cz3Ve/qDEggp+JHPSA+u8KuarZEFrySwBhfHPNDHw1vm1M2GrfZvJFSoHpTAqnGJmIGw1D/VipRA4WKwG919L17YzzYqFR2HKM8kjxNYnxQD/YHQJntaaKeni7Ge5h3aYkEs=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "稼働中",
+    "2": "稼働中"
    }
   },
   "2150fe2da1c9e482": {
@@ -406,11 +407,11 @@
    }
   },
   "8211f8e43df0c9e7": {
-   "listed": false,
+   "listed": true,
    "n": "1ISBAPLxBJrpZy0H+QPG7DbrTYgAdlJdzY+Rv1+duROMVBMA3M7eoUwQo3+r5nAKAHx+KuHxKeLaR9nJUfnDSrRlByUd+tMMaNQR0DKETUNscPAYMS4w8BVvis4PDDJJSSommoW5+So=",
    "p": "愛知県",
    "s": {
-    "1": "オフライン"
+    "1": "稼働中"
    }
   },
   "86656f0de4d93f10": {
@@ -775,7 +776,7 @@
    "n": "6vOb4Qp0uwLrnbSy5RFEudm2DdJBdq55N7+KNMO2dDzo++jEpZchhUexBhVKeI0qPt3kZKVrllrqZrqnsCGwNp5xLp9rj6dg3ha+DZPIwQsR0fBYChaq0FA+TE8KW1GlnOkrvP2RcJcQlYWs",
    "p": "愛知県",
    "s": {
-    "1": "オフライン"
+    "1": "稼働中"
    }
   },
   "d8ad0614864618ba": {
@@ -886,6 +887,14 @@
     "1": "オフライン"
    }
   },
+  "fc59e391aa15647a": {
+   "listed": true,
+   "n": "ZEZfCpLd46UCr8V7lYbnW0SfVGkFYN3Sd9J1cxervWA3zTUtrhqPQ0H1PJibbLij1z8UA5BVNx289YENNvqsjMpLxgFpIHa54g==",
+   "p": "岐阜県",
+   "s": {
+    "1": "稼働中"
+   }
+  },
   "fd78124ef5c6d41b": {
    "listed": false,
    "n": "ZpAMsLtrTuFI00bn5e8/bAQxkUXvhQ6JVoXsYmNLhMlAI39s/BluEbnMdei9H6gb36lVHPuzLJfG8od4nyuIccKi/ttH+JqK6Ys=",
@@ -903,7 +912,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 12:10",
+ "all_checked_at": "2026-11-28 12:20",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1373,17 +1382,18 @@
    }
   },
   "fc59e391aa15647a": {
-   "c": {},
-   "gone_at": "2026-11-26 00:50",
-   "listed": false,
+   "c": {
+    "1": "１弾・１弾"
+   },
+   "listed": true,
    "m": {
     "1": "2026-11-22 09:03:07"
    },
-   "miss": 3,
+   "miss": 0,
    "n": "ZEZfCpLd46UCr8V7lYbnW0SfVGkFYN3Sd9J1cxervWA3zTUtrhqPQ0H1PJibbLij1z8UA5BVNx289YENNvqsjMpLxgFpIHa54g==",
    "q": "80eef005f12067ba",
    "s": {
-    "1": "オフライン"
+    "1": "稼働中"
    }
   }
  }
