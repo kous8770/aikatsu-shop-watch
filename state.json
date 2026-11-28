@@ -621,8 +621,7 @@
    "n": "K2Od9IFC/cqIferfq8KHN5p2NeWrMBF9QlCDq6b8yWHCFvGF3HG67m7xvb2W/0V1I6cjoqkNOlnAoEBT8GdLLz7vWrnBy9+tbr6g/RACgQ08g4XLiB1roNn514CRNZPflQQTaP9LZibWC/Qsrkh5nnGi8cU1CTI=",
    "p": "愛知県",
    "s": {
-    "1": "オフライン",
-    "2": "稼働中"
+    "1": "稼働中"
    }
   },
   "b38f99556e61ce12": {
@@ -812,7 +811,7 @@
    }
   },
   "dcab1163e1c5d97d": {
-   "listed": true,
+   "listed": false,
    "n": "/DluEUxJxoHHEtt4ZB92EnH4L/9aHB78d/vxramtGnFeqVYjpwVhHvTSaWSMzKEz61adL9/1M2RWHgXAuoghUdblfpnebheJOinaENVnP584zGT5NSrfo7vXwQbbj3Ap4liFL5/SuNt0jRlGpS3+tDgNI7FRMpM=",
    "p": "愛知県",
    "s": {
@@ -927,7 +926,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 14:20",
+ "all_checked_at": "2026-11-28 14:30",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
