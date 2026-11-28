@@ -839,7 +839,7 @@
    "n": "aCmnp4VUZt1CvtRoCOXRXXgRypYDoBGHTPO3xz14JAeqZJCHtaxDQIKAaC8F+uUENYrryTZUytYzg0Lx94zxP67/+FrruXnGnHAMfmhizJzLfgNRG40iMJpwS7ShfA==",
    "p": "愛知県",
    "s": {
-    "1": "カード切れ停止中"
+    "1": "オフライン"
    }
   },
   "dcab1163e1c5d97d": {
@@ -958,7 +958,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 21:50",
+ "all_checked_at": "2026-11-28 22:00",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
