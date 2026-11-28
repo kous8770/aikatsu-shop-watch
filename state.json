@@ -229,6 +229,14 @@
     "1": "オフライン"
    }
   },
+  "4a41db9bf0249acf": {
+   "listed": true,
+   "n": "xnPARYtM1rK9tvW7liBafoD6u7tPVesjmjutXd/6wD4oMdlGPMQnMEgSOLnQ2mmP4dOyw3rRNUyJY1YGnLkypJs6X9+U08B1zGUx317Y2u9piB+vhxUACtkD4NAuQkGIKZ2Xuq5wu+4Tj0fI+tdk8z66UpiW+C1m+N1J6XHzI13mZsdZgWhBapt+9SBYkA==",
+   "p": "愛知県",
+   "s": {
+    "1": "オフライン"
+   }
+  },
   "4c046f1a21d20d1f": {
    "listed": true,
    "n": "Z5hOjve6/8oDEapIxMbFvGLVf5Cpe15X9IM7fKyNEx+rlbGvOgwUrFBlM2jPy5cEC5brWp/3tReG6K9zAiEwrOy28xXtb9ch0DKS2rNUr6xY/SuKROTT5kbq89tdBXhJ65PXO7E7uaVMcVA=",
@@ -266,8 +274,8 @@
    "n": "6h7Oc7DCarp49lAaNKscwelesrfxjNkE7622kNFgaUhLOf7LQKOGeLLdKWRFJ5QB+kJVEpA7ISW4DV9mfCnmGqU=",
    "p": "岐阜県",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "52c4813520946b1a": {
@@ -349,7 +357,8 @@
    "n": "eoRf2GAwAAsjO9jekLYl18IZPhD17SBnYQyFu/8zJC47N5sT0/Q3CVADVE3dQO541LverNX1w3n3s16Uyqw9xOvfEe3uMf0vl3RvgAu3Ay9Mdku0u9w9OaJQ6NOSWChhqRySSdzkaJaTDCN35JMR+g==",
    "p": "岐阜県",
    "s": {
-    "1": "稼働中"
+    "1": "稼働中",
+    "2": "オフライン"
    }
   },
   "6e9af5dc0db84576": {
@@ -645,7 +654,8 @@
    "n": "xv5qsKU6mYpc2n8rZjwlA1lM2BI8Y3oklj9dOGxA7zJN0d89Fb1u7zM56YbData5ol9sxm4ZSgZQEEZqcq6uw/cy0rD3jejFBV061QnwcDFWp0yfRzBmsNF3OcNCK8ONtNHoOnUcc3yPBXFa8D820eyaH/8=",
    "p": "岐阜県",
    "s": {
-    "1": "オフライン"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "b261a85e237778a0": {
@@ -849,7 +859,8 @@
    "p": "愛知県",
    "s": {
     "1": "オフライン",
-    "2": "オフライン"
+    "2": "オフライン",
+    "3": "オフライン"
    }
   },
   "e196d1f51636f89c": {
@@ -889,7 +900,8 @@
    "n": "PC4Qa5ht4dz8+xfl0qVRVMNlQmYaImUIbVQ3ldoxE0QOhQ5NA0bpC8eQrtznqX7/D1Uu/IskbqWH2xrrQPloFwiXS/MkVJG2WcR93gvl//I4zQaM9PbbfgDNBOEbiGbbyoCgt3yeIUDkW8J+tBvuPXj4wgjg71YIrsfHcPfH07m89Xo=",
    "p": "愛知県",
    "s": {
-    "1": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "ead0688295b2933b": {
@@ -960,7 +972,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 22:20",
+ "all_checked_at": "2026-11-28 22:30",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -986,6 +998,24 @@
    "",
    "",
    "一覧に戻った（稼働中なし）"
+  ],
+  [
+   "2026-11-28 22:30",
+   "51f0dc4bad07f7a2",
+   "1",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
+  ],
+  [
+   "2026-11-28 22:30",
+   "51f0dc4bad07f7a2",
+   "2",
+   "稼働中",
+   "オフライン",
+   "",
+   "状態が変わった"
   ]
  ],
  "queries": [
@@ -1192,8 +1222,8 @@
    "n": "6h7Oc7DCarp49lAaNKscwelesrfxjNkE7622kNFgaUhLOf7LQKOGeLLdKWRFJ5QB+kJVEpA7ISW4DV9mfCnmGqU=",
    "q": "085cc47680a3b8d8",
    "s": {
-    "1": "稼働中",
-    "2": "稼働中"
+    "1": "オフライン",
+    "2": "オフライン"
    }
   },
   "723810e7a810ca71": {
