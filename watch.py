@@ -47,6 +47,11 @@ STATE_FILE = os.environ.get("STATE_FILE", "state.json")
 HISTORY_FILE = os.environ.get("HISTORY_FILE", "history.csv")
 STATUS_LOG_FILE = os.environ.get("STATUS_LOG_FILE", "status_log.csv")
 STATUS_LOG_PREFS = [x.strip() for x in os.environ.get("STATUS_LOG_PREFS", "愛知県,岐阜県").split(",") if x.strip()]
+# Yahoo! リアルタイム検索（X の投稿）で、見張っている地域の「アイカツ」の投稿を昼の 30 分ごとに拾う。
+# 地域の言葉は公開のログに出ないよう Secrets の YRT_WORDS に入れる（カンマか改行区切り）
+YRT_WORDS = [w.strip() for w in re.split(r"[,\n、]", os.environ.get("YRT_WORDS", "")) if w.strip()]
+YRT_URL = "https://search.yahoo.co.jp/realtime/search"
+YRT_SKIP = re.compile(r"譲|求|交換|買取|取引|定価|送料|ガチャ|ガシャポン|チャーム|ヘアコーム|缶バッジ|アクスタ|アクリル")
 MIN_GAP_HOURS = float(os.environ.get("MIN_GAP_HOURS") or 36)
 QUIET_START = int(os.environ.get("QUIET_START") or 22)
 QUIET_END = int(os.environ.get("QUIET_END") or 8)
@@ -337,6 +342,47 @@ def log_all_status(state, checked_at, watched):
                 v["listed"] = False
     state["all_checked_at"] = checked_at
     return rows
+
+
+def yrt_check(state, now, quiet):
+    """Yahoo! リアルタイム検索で「アイカツ（地域の言葉のどれか）」を 1 回だけ検索し、前回より新しい投稿の行を返す。
+    昼（夜の時間帯の外）の 30 分ごとに 1 回だけ。最初の回は基準にするだけ。読めなくても見張りは止めない。"""
+    if not YRT_WORDS or quiet:
+        return []
+    bucket = now.strftime("%Y-%m-%d %H") + (":00" if now.minute < 30 else ":30")
+    y = state.setdefault("yrt", {})
+    if y.get("bucket") == bucket:
+        return []
+    y["bucket"] = bucket
+    query = "アイカツ (" + " OR ".join(YRT_WORDS) + ")"
+    try:
+        req = urllib.request.Request(YRT_URL + "?" + urllib.parse.urlencode({"p": query}), headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            page = r.read().decode("utf-8", "replace")
+        data = json.loads(re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', page, re.S).group(1))
+        entries = data["props"]["pageProps"]["pageData"]["timeline"]["entry"]
+    except Exception as e:  # 形が変わった、読めないなど
+        log(f"リアルタイム検索を読めませんでした（{type(e).__name__}）")
+        return []
+    first = "last_ts" not in y
+    last_ts = int(y.get("last_ts", 0))
+    seen = set(y.get("seen", []))
+    new = [e for e in entries if str(e.get("id")) not in seen and int(e.get("createdAt", 0)) > last_ts]
+    y["seen"] = list(dict.fromkeys([str(e.get("id")) for e in entries] + y.get("seen", [])))[:300]
+    y["last_ts"] = max([int(e.get("createdAt", 0)) for e in entries] + [last_ts])
+    log(f"リアルタイム検索 {len(entries)} 件、新しい投稿 {len(new)} 件" + ("（最初の回は基準にするだけ）" if first else ""))
+    if first:
+        return []
+    lines = []
+    for e in sorted(new, key=lambda e: int(e.get("createdAt", 0))):
+        body = re.sub(r"\s+", " ", e.get("displayText", "").replace("\tSTART\t", "").replace("\tEND\t", "")).strip()
+        if YRT_SKIP.search(body) or not any(w in body for w in YRT_WORDS):
+            continue
+        when = datetime.datetime.fromtimestamp(int(e["createdAt"]), JST).strftime("%m/%d %H:%M")
+        url = (e.get("url") or "").split("?")[0]
+        short = body if len(body) <= 100 else body[:100] + "…"
+        lines.append(f"📣 **{e.get('name', '')}**（{when}）{short}\n<{url}>")
+    return lines
 
 
 def send(content, env="DISCORD_WEBHOOK_URL"):
@@ -721,6 +767,12 @@ def main():
             if lines:
                 header = f"**公式更新ログ（{now.strftime('%H:%M')}時点）**" + ("　※夜の間の分も含みます" if held_all else "")
                 sent += send_chunks(header, lines, "", "DISCORD_WEBHOOK_URL_ALL")
+    # X の投稿（Yahoo! リアルタイム検索）。見張っている地域の言葉がある「アイカツ」の投稿を、大事な方へ
+    yrt_lines = yrt_check(state, now, quiet)
+    if yrt_lines:
+        sent += send_chunks(f"**X の投稿（Yahoo! リアルタイム検索、{now.strftime('%H:%M')}時点）**", yrt_lines,
+                            "※投稿の内容は確かめていません。", "DISCORD_WEBHOOK_URL")
+
     # 1 時間ごとに、今稼働中の台がある店の一覧を更新ログに出す（夜 22〜8 時は出さない）
     hour_key = now.strftime("%Y-%m-%d %H")
     if (os.environ.get("DISCORD_WEBHOOK_URL_ALL", "").strip() or (DRY_RUN and os.environ.get("DRY_RUN_ALL") == "1"))             and not quiet and now_status and state.get("hourly_last") != hour_key:
