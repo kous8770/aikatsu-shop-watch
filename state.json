@@ -657,8 +657,7 @@
    "n": "fu+bWm3soCRozl7YW3mG0FhNeN5DNU66or1A9Rwak52a+NnZBNk+8T1xkKCiCGDxi9x9QnW0ru6DVs3OXmz27U/JHTGUxjRXLT7XDy9/ZaxQ5hpyrqsVW63DByaOBzYXH0+CxT7oPmHlR2pdA3otBtdYy47gOI1zeOtzApARlNtMq1oUVjFZbqZlruEoey1NowaeZMUJe5lQ",
    "p": "愛知県",
    "s": {
-    "1": "オフライン",
-    "2": "オフライン"
+    "1": "オフライン"
    }
   },
   "c106be75e52ed8e7": {
@@ -904,7 +903,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 11:41",
+ "all_checked_at": "2026-11-28 11:50",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
