@@ -958,7 +958,7 @@
    }
   }
  },
- "all_checked_at": "2026-11-28 20:30",
+ "all_checked_at": "2026-11-28 20:40",
  "all_started": "2026-11-25 13:03",
  "all_v2": "2026-11-25 14:10",
  "fail": 0,
@@ -1049,14 +1049,15 @@
     "1": "１弾・１弾",
     "2": "１弾・１弾"
    },
+   "gone_at": "2026-11-28 20:40",
    "gone_m": {
     "2": "2026-11-24 12:03:03"
    },
-   "listed": true,
+   "listed": false,
    "m": {
     "1": "2026-11-24 11:43:04"
    },
-   "miss": 2,
+   "miss": 3,
    "n": "PdnhosACn4o1BZB1OuP6J+2R1X7PeX8ktgI+8yCNAhjizmKFtrI9iH0Yo3/mFDJK0JKtPdc6Vol9nrvx01cEGrsONNejacNo9AeAAczSKQ6R1/ZcCMA=",
    "q": "80eef005f12067ba",
    "s": {
